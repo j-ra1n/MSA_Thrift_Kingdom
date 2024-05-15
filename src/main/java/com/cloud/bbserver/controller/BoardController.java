@@ -29,7 +29,7 @@ public class BoardController {
     @GetMapping("/list")
     public Page<Board> boardList(@PageableDefault(page = 0, size = 10, sort = "id",
             direction = Sort.Direction.DESC) Pageable pageable,
-                                 @RequestParam(required = false) String searchKeyword) {
+                                 @RequestParam(name = "searchKeyword", required = false) String searchKeyword) {
         if (searchKeyword == null) {
             return boardService.boardList(pageable);
         } else {

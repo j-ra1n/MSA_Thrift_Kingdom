@@ -4,9 +4,10 @@ package com.cloud.sbserver.dto;
 import lombok.Data;
 
 @Data
-public class BoardRequestDto {
-    private String title;
-    private String content;
+public class ItemRequestDto {
+    private String productName;
+    private String price;
+    private String url;
     private String nickname;
     private long user_id;
 }

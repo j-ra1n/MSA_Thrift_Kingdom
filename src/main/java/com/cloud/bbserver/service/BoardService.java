@@ -16,21 +16,19 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    //글 작성
+    //Bulletin Board 글 작성
     public void write(BoardRequestDto board) {
         boardRepository.save(
-                new Board(
-                        0,
-                        board.getTitle(),
-                        board.getContent(),
-                        board.getNickname(),
-                        board.getCompany(),
-                        board.getUser_id()
-                )
+                Board.builder()
+                        .title(board.getTitle())
+                        .content(board.getContent())
+                        .nickname(board.getNickname())
+                        .user_id(board.getUser_id())
+                        .build()
         );
     }
 
-    // 게시글 리스트 처리
+    // Bulletin Board 리스트 처리
     public Page<Board> boardList(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
@@ -39,17 +37,17 @@ public class BoardService {
         return boardRepository.findByTitleContaining(searchKeyword, pageable);
     }
 
-    // 특정 게시글 불러오기
+    // Bulletin Board 게시글 불러오기
     public Board boardView(Integer id) {
         return boardRepository.findById(id).orElse(null);
     }
 
-    // 특정 게시글 삭제
+    // 특정 Bulletin Board 게시글 삭제
     public void boardDelete(Integer id) {
         boardRepository.deleteById(id);
     }
 
-    // 게시글 업데이트
+    // Bulletin Board 게시글 업데이트
     public void boardUpdate(Board board) {
         Board existingBoard = boardRepository.findById(board.getId()).orElse(null);
         if (existingBoard != null) {

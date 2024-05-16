@@ -7,7 +7,6 @@ import cloud.computing.auth.api.service.jwt.JwtToken;
 import cloud.computing.auth.api.service.oauth.OAuthService;
 import cloud.computing.auth.api.service.oauth.response.OAuthResponse;
 import cloud.computing.auth.api.service.token.RefreshTokenService;
-import cloud.computing.auth.common.exception.AuthException;
 import cloud.computing.auth.common.exception.ExceptionMessage;
 import cloud.computing.auth.common.exception.jwt.JwtException;
 import cloud.computing.auth.domain.define.account.user.User;
@@ -161,4 +160,10 @@ public class AuthService {
                 .refreshToken(refreshToken)
                 .build();
     }
+
+    @Transactional
+    public void logout(String refreshToken) {
+        refreshTokenService.logout(refreshToken);
+    }
+
 }

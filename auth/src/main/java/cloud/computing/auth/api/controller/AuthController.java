@@ -14,13 +14,13 @@ import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.common.response.JsonResult;
 import cloud.computing.auth.domain.define.account.user.User;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
-import jakarta.security.auth.message.AuthException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -28,6 +28,8 @@ import java.util.List;
 @RequestMapping("/auth")
 @RestController
 public class AuthController {
+
+    private final static int REFRESH_TOKEN_INDEX = 2;
 
     private final LoginStateService loginStateService;
 
@@ -71,5 +73,21 @@ public class AuthController {
         AuthLoginResponse response = authService.register(AuthServiceRegisterRequest.of(request), user);
 
         return JsonResult.successOf(response);
+    }
+
+    @PostMapping("/logout")
+    public JsonResult<?> logout(@RequestHeader(name = "Authorization") String token) {
+        List<String> tokens = Arrays.asList(token.split(" "));
+
+
+        if (tokens.size() == 3) {
+            authService.logout(tokens.get(REFRESH_TOKEN_INDEX));
+
+            return JsonResult.successOf("로그아웃 되었습니다.");
+        } else {
+            log.warn(">>>> Invalid Header Access : {}", ExceptionMessage.JWT_INVALID_HEADER.getText());
+            return JsonResult.failOf(ExceptionMessage.JWT_INVALID_HEADER.getText());
+        }
+
     }
 }

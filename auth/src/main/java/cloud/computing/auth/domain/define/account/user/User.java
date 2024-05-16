@@ -55,6 +55,13 @@ public class User implements UserDetails {
         this.profileImageUrl = profileImageUrl;
     }
 
+    // 회원가입 (UNAUTH -> USER)
+    public void updateRegister(String name) {
+        this.role = UserRole.USER;
+        this.name = name;
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

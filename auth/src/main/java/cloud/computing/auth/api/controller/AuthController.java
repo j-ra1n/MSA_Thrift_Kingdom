@@ -1,17 +1,24 @@
 package cloud.computing.auth.api.controller;
 
 
+import cloud.computing.auth.api.controller.request.AuthRegisterRequest;
 import cloud.computing.auth.api.controller.response.AuthLoginPageResponse;
 import cloud.computing.auth.api.controller.response.AuthLoginResponse;
 import cloud.computing.auth.api.service.auth.AuthService;
+import cloud.computing.auth.api.service.auth.request.AuthServiceRegisterRequest;
 import cloud.computing.auth.api.service.oauth.OAuthService;
 import cloud.computing.auth.api.service.state.LoginStateService;
 import cloud.computing.auth.common.exception.ExceptionMessage;
+import cloud.computing.auth.common.exception.jwt.JwtException;
 import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.common.response.JsonResult;
+import cloud.computing.auth.domain.define.account.user.User;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
+import jakarta.security.auth.message.AuthException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,5 +62,14 @@ public class AuthController {
         AuthLoginResponse loginResponse = authService.login(platformType, code, loginState);
 
         return JsonResult.successOf(loginResponse);
+    }
+
+    @PostMapping("/register")
+    public JsonResult<?> register(@AuthenticationPrincipal User user,
+                                  @Valid @RequestBody AuthRegisterRequest request) throws JwtException {
+
+        AuthLoginResponse response = authService.register(AuthServiceRegisterRequest.of(request), user);
+
+        return JsonResult.successOf(response);
     }
 }

@@ -1,11 +1,15 @@
 package cloud.computing.auth.api.service.auth;
 
 import cloud.computing.auth.api.controller.response.AuthLoginResponse;
+import cloud.computing.auth.api.service.auth.request.AuthServiceRegisterRequest;
 import cloud.computing.auth.api.service.jwt.JwtService;
 import cloud.computing.auth.api.service.jwt.JwtToken;
 import cloud.computing.auth.api.service.oauth.OAuthService;
 import cloud.computing.auth.api.service.oauth.response.OAuthResponse;
 import cloud.computing.auth.api.service.token.RefreshTokenService;
+import cloud.computing.auth.common.exception.AuthException;
+import cloud.computing.auth.common.exception.ExceptionMessage;
+import cloud.computing.auth.common.exception.jwt.JwtException;
 import cloud.computing.auth.domain.define.account.user.User;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
 import cloud.computing.auth.domain.define.account.user.constant.UserRole;
@@ -103,4 +107,58 @@ public class AuthService {
     }
 
 
+    @Transactional
+    public AuthLoginResponse register(AuthServiceRegisterRequest request, User user) {
+        User findUser = userRepository.findByPlatformIdAndPlatformType(user.getPlatformId(), user.getPlatformType()).orElseThrow(() -> {
+            // UNAUTH인 토큰을 받고 회원 탈퇴 후 그 토큰으로 회원가입 요청시 예외 처리
+            log.warn(">>>> User Not Exist : {}", ExceptionMessage.AUTH_INVALID_REGISTER.getText());
+            throw new JwtException(ExceptionMessage.AUTH_INVALID_REGISTER);
+        });
+
+        // UNAUTH 토큰으로 회원가입을 요청했지만 이미 update되어 UNAUTH가 아닌 사용자 예외 처리
+        if (findUser.getRole() != UserRole.UNAUTH) {
+            log.warn(">>>> Not UNAUTH User : {}", ExceptionMessage.AUTH_DUPLICATE_UNAUTH_REGISTER.getText());
+            throw new JwtException(ExceptionMessage.AUTH_DUPLICATE_UNAUTH_REGISTER);
+        }
+
+        // 회원가입 정보 DB 반영
+        findUser.updateRegister(request.getName());
+
+        // JWT Access Token, Refresh Token 재발급
+        JwtToken tokens = createJwtToken(findUser);
+
+        return AuthLoginResponse.builder()
+                .accessToken(tokens.getAccessToken())
+                .refreshToken(tokens.getRefreshToken())
+                .role(findUser.getRole())
+                .build();
+    }
+
+    private JwtToken createJwtToken(User user) {
+        // JWT 토큰 생성을 위한 claims 생성
+        HashMap<String, String> claims = new HashMap<>();
+        claims.put(ROLE_CLAIM, user.getRole().name());
+        claims.put(PLATFORM_ID_CLAIM, user.getPlatformId());
+        claims.put(PLATFORM_TYPE_CLAIM, String.valueOf(user.getPlatformType()));
+
+        // Access Token 생성
+        final String accessToken = jwtService.generateAccessToken(claims, user);
+        // Refresh Token 생성
+        final String refreshToken = jwtService.generateRefreshToken(claims, user);
+
+        log.info(">>>> {} generate Tokens", user.getName());
+
+        // Refresh Token 저장 - REDIS
+        RefreshToken rt = RefreshToken.builder()
+                .refreshToken(refreshToken)
+                .subject(user.getUsername())
+                .build();
+        refreshTokenService.saveRefreshToken(rt);
+
+
+        return JwtToken.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
 }

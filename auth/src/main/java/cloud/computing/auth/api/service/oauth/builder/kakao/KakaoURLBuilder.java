@@ -24,12 +24,9 @@ public class KakaoURLBuilder implements OAuthURLBuilder {
     public KakaoURLBuilder(OAuthProperties oAuthProperties) {
         try {
             // 플랫폼(kakao)의 client, provider Map 획득
-            log.debug("OAuthProperties: {}", oAuthProperties);
             OAuthProperties.Client kakaoClient = oAuthProperties.getClient().get(PLATFORM);
             OAuthProperties.Provider kakaoProvider = oAuthProperties.getProvider().get(PLATFORM);
 
-            log.debug("Kakao Client: {}", kakaoClient);
-            log.debug("Kakao Provider: {}", kakaoProvider);
 
             this.authorizationUri = kakaoProvider.authorizationUri();
             this.clientId = kakaoClient.clientId();

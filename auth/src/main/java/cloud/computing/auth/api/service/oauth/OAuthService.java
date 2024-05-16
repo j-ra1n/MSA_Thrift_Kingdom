@@ -2,9 +2,11 @@ package cloud.computing.auth.api.service.oauth;
 
 import cloud.computing.auth.api.controller.response.AuthLoginPageResponse;
 import cloud.computing.auth.api.service.oauth.adapter.OAuthAdapter;
+import cloud.computing.auth.api.service.oauth.adapter.google.GoogleAdapter;
 import cloud.computing.auth.api.service.oauth.adapter.kakao.KakaoAdapter;
 import cloud.computing.auth.api.service.oauth.builder.OAuthURLBuilder;
 import cloud.computing.auth.api.service.oauth.builder.kakao.KakaoURLBuilder;
+import cloud.computing.auth.api.service.oauth.builder.google.GoogleURLBuilder;
 import cloud.computing.auth.api.service.oauth.response.OAuthResponse;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static cloud.computing.auth.domain.define.account.user.constant.UserPlatformType.GOOGLE;
 import static cloud.computing.auth.domain.define.account.user.constant.UserPlatformType.KAKAO;
 
 @Slf4j
@@ -26,7 +29,7 @@ public class OAuthService {
     // 플랫폼별 Adapter, URLBuilder 등록
 
 
-    public OAuthService(KakaoAdapter kakaoAdapter, KakaoURLBuilder kakaoURLBuilder) {
+    public OAuthService(KakaoAdapter kakaoAdapter, KakaoURLBuilder kakaoURLBuilder, GoogleAdapter googleAdapter, GoogleURLBuilder googleURLBuilder) {
         this.adapterMap = new HashMap<>() {{
 
 
@@ -36,9 +39,15 @@ public class OAuthService {
                     .oAuthURLBuilder(kakaoURLBuilder)
                     .build());
 
+            // 구글 플랫폼 추가
+            put(GOOGLE, OAuthFactory.builder()
+                    .oAuthAdapter(googleAdapter)
+                    .oAuthURLBuilder(googleURLBuilder)
+                    .build());
 
         }};
     }
+
     // OAuth 2.0 로그인 페이지 생성
     public List<AuthLoginPageResponse> loginPage(String state) {
         // 지원하는 모든 플랫폼의 로그인 페이지를 생성해 반환한다.

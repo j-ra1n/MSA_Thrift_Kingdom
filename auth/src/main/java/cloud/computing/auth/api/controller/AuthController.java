@@ -75,7 +75,7 @@ public class AuthController {
         AuthLoginResponse loginResponse = authService.login(platformType, code, loginState);
 
         // 로그인 처리가 완료되면 메인 페이지로 리디렉션
-        String redirectUrl = "http://localhost:3000"; // 메인 페이지 URL로 변경
+        String redirectUrl = "http://localhost:3000/doors?loggedIn=true";
         response.sendRedirect(redirectUrl);
     }
 

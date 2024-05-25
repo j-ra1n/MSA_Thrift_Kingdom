@@ -1,0 +1,36 @@
+.post-detail-container {
+    padding: 20px;
+    background-color: #523F37;
+    color: #EAD4AA;
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
+    position: relative;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #EAD4AA;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .post-title {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+  
+  .post-writer, .post-date {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .post-content {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  

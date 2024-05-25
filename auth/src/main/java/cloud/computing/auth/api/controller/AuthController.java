@@ -14,12 +14,14 @@ import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.common.response.JsonResult;
 import cloud.computing.auth.domain.define.account.user.User;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class AuthController {
     private final AuthService authService;
 
 
-    @GetMapping("/loginPage")
+    @GetMapping("/lP")
     public JsonResult<List<AuthLoginPageResponse>> loginPage() {
 
         String loginState = loginStateService.generateLoginState();
@@ -50,11 +52,20 @@ public class AuthController {
         return JsonResult.successOf(loginPages);
     }
 
+    @GetMapping("/loginPage")
+    public JsonResult<String> loginPage(@RequestParam("platform") String platform) {
+        String loginState = loginStateService.generateLoginState();
+        String loginUrl = oAuthService.getLoginUrl(platform, loginState);
+        return JsonResult.successOf(loginUrl);
+    }
+
+
     @GetMapping("/{platformType}/login")
-    public JsonResult<AuthLoginResponse> login(
+    public void login(
             @PathVariable("platformType") UserPlatformType platformType,
             @RequestParam("code") String code,
-            @RequestParam("state") String loginState) {
+            @RequestParam("state") String loginState,
+            HttpServletResponse response) throws IOException {
 
         // state 값이 유효한지 검증
         if (!loginStateService.isValidLoginState(loginState)) {
@@ -63,7 +74,9 @@ public class AuthController {
 
         AuthLoginResponse loginResponse = authService.login(platformType, code, loginState);
 
-        return JsonResult.successOf(loginResponse);
+        // 로그인 처리가 완료되면 메인 페이지로 리디렉션
+        String redirectUrl = "http://localhost:3000"; // 메인 페이지 URL로 변경
+        response.sendRedirect(redirectUrl);
     }
 
     @PostMapping("/register")

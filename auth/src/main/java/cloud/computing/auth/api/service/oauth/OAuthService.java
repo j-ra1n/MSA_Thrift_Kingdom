@@ -8,6 +8,8 @@ import cloud.computing.auth.api.service.oauth.builder.OAuthURLBuilder;
 import cloud.computing.auth.api.service.oauth.builder.kakao.KakaoURLBuilder;
 import cloud.computing.auth.api.service.oauth.builder.google.GoogleURLBuilder;
 import cloud.computing.auth.api.service.oauth.response.OAuthResponse;
+import cloud.computing.auth.common.exception.ExceptionMessage;
+import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.domain.define.account.user.constant.UserPlatformType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -89,4 +91,29 @@ public class OAuthService {
 
         return userInfo;
     }
+
+    public String getLoginUrl(String platform, String loginState) {
+        String clientId;
+        String redirectUri;
+        String authorizationUri;
+        String scope;
+
+        if (platform.equalsIgnoreCase("KAKAO")) {
+            clientId = "c8ab98649fa0923d7fef54b5d6964693";
+            redirectUri = "http://localhost:8081/auth/KAKAO/login";
+            authorizationUri = "https://kauth.kakao.com/oauth/authorize";
+            scope = "openid";
+        } else if (platform.equalsIgnoreCase("GOOGLE")) {
+            clientId = "880451833113-tekouofuue60vnf918s9v22m44aiopct.apps.googleusercontent.com";
+            redirectUri = "http://localhost:8081/auth/GOOGLE/login";
+            authorizationUri = "https://accounts.google.com/o/oauth2/v2/auth";
+            scope = "email profile";
+        } else {
+            throw new OAuthException(ExceptionMessage.AUTH_INVALID_REGISTER);
+        }
+
+        return String.format("%s?response_type=code&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
+                authorizationUri, clientId, redirectUri, loginState, scope);
+    }
+
 }

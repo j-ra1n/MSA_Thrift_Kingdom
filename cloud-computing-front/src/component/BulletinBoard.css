@@ -1,148 +1,164 @@
 .board-container {
     padding: 20px;
-    text-align: center;
-    background-color: #523F37;
-    color: #EAD4AA;
-    border-radius: 20px;
+    background-color: #f9f9f9; /* 밝은 배경색 */
+    color: #333;
+    border-radius: 10px;
     width: 80%;
-    margin: auto;
+    max-width: 1000px;
+    margin: 40px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
-}
+  }
   
-.back-button {
+  .back-button {
     background: none;
     border: none;
     font-size: 24px;
-    color: #EAD4AA;
+    color: #d6bfbf; /* 잘 보이도록 색상 변경 */
     cursor: pointer;
     position: absolute;
     top: 20px;
     left: 20px;
-}
+    z-index: 10; /* 다른 요소보다 앞에 보이도록 설정 */
+  }
   
-.board-title {
-    font-size: 36px;
+  .board-title {
+    font-size: 32px;
     margin: 20px 0;
-}
+    text-align: center;
+    color: #333;
+  }
   
-.create-button {
-    background-color: #E88B8B;
-    border: none;
-    color: #FFFFFF;
+  .create-button {
+    display: block;
+    margin: 0 auto 20px;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px;
-}
+  }
   
-.board-table {
+  .create-button:hover {
+    background-color: #45a049;
+  }
+  
+  .board-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-}
+  }
   
-.board-table th, .board-table td {
-    border: 1px solid #EAD4AA;
-    padding: 10px;
+  .board-table th, .board-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-}
-
-/* Add this part to change cursor on hover */
-.board-table td.title-cell {
-    cursor: pointer;
-}
+  }
   
-.door-navigation {
+  .board-table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .title-cell {
+    cursor: pointer;
+    color: #f3c29a; /* 요청하신 색상으로 변경 */
+  }
+  
+  .title-cell:hover {
+    text-decoration: underline;
+    color: #a38912; /* 호버 시 색상 변경 */
+  }
+  
+  .door-navigation {
     display: flex;
     justify-content: center;
-    gap: 50px;
-}
+    margin-top: 20px;
+  }
   
-.door {
-    cursor: pointer;
+  .door {
+    margin: 0 10px;
     text-align: center;
-}
+    cursor: pointer;
+  }
   
-.door-image {
-    width: 100px;
-    height: 150px;
-    background-size: cover;
-    border-radius: 10px;
-}
+  .door-image {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    margin-bottom: 5px;
+  }
   
-.bulletin {
-    background-image: url('../images/doorb.png');
-}
-  
-.sharing {
-    background-image: url('../images/doorb.png');
-}
-  
-.door-name {
-    margin-top: 10px;
-    font-size: 18px;
-}
-  
-.modal-overlay {
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
   
-.modal {
-    background: #2E2A2A;
-    color: #EAD4AA;
+  .modal {
+    background: #523F37;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
-}
+    width: 90%;
+    max-width: 500px;
+    color: #EAD4AA;
+    position: relative;
+  }
   
-.modal-back-button {
+  .modal-close-button {
     background: none;
     border: none;
     font-size: 24px;
-    color: #EAD4AA;
+    color: #FF6347; /* 잘 보이도록 색상 변경 */
     cursor: pointer;
-    margin-bottom: 10px;
-}
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
   
-.form-group {
+  .modal-title {
+    font-size: 24px;
     margin-bottom: 20px;
-}
+  }
   
-label {
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
     display: block;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+    margin-bottom: 5px;
+  }
   
-input, textarea {
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-create-button {
+    display: block;
     width: 100%;
     padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #EAD4AA;
-    color: #2E2A2A;
     font-size: 16px;
-}
-  
-textarea {
-    height: 100px;
-}
-  
-.modal-create-button {
-    background-color: #E88B8B;
+    background-color: #FF6347;
+    color: white;
     border: none;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-}
+  }
+  
+  .modal-create-button:hover {
+    background-color: #d9534f;
+  }
+  

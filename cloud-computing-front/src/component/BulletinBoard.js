@@ -6,7 +6,7 @@ const BulletinBoard = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState('');
-  const [writer, setWriter] = useState('');
+  const [nickname, setNickname] = useState('');  
   const [content, setContent] = useState('');
   const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +26,7 @@ const BulletinBoard = () => {
   };
 
   const handleCreatePost = () => {
-    const newPost = { title, writer, content };
+    const newPost = { title, nickname, content };  
 
     fetch('http://localhost:8082/board/', {
       method: 'POST',
@@ -35,13 +35,13 @@ const BulletinBoard = () => {
       },
       body: JSON.stringify(newPost)
     })
-    .then(response => response.text())  // 응답을 텍스트로 처리
+    .then(response => response.text())
     .then(() => {
-      setShowModal(false); // 먼저 모달을 닫고
+      setShowModal(false); 
       setTitle('');
-      setWriter('');
+      setNickname('');  
       setContent('');
-      fetchPosts(); // 그 후에 게시글을 다시 불러옵니다.
+      fetchPosts(); 
     })
     .catch(error => console.error('Error creating post:', error));
   };
@@ -85,7 +85,7 @@ const BulletinBoard = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
-            <button className="modal-back-button" onClick={() => setShowModal(false)}>←</button>
+            <button className="modal-close-button" onClick={() => setShowModal(false)}>×</button>
             <h2 className="modal-title">글 작성</h2>
             <div className="form-group">
               <label>제목</label>
@@ -93,7 +93,7 @@ const BulletinBoard = () => {
             </div>
             <div className="form-group">
               <label>작성자</label>
-              <input type="text" value={writer} onChange={(e) => setWriter(e.target.value)} />
+              <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />  
             </div>
             <div className="form-group">
               <label>내용</label>

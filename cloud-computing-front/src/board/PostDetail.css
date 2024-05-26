@@ -1,36 +1,57 @@
 .post-detail-container {
-    padding: 20px;
-    background-color: #523F37;
-    color: #EAD4AA;
-    border-radius: 20px;
-    width: 80%;
-    margin: auto;
-    position: relative;
-  }
-  
-  .back-button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #EAD4AA;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
-  
-  .post-title {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-  
-  .post-writer, .post-date {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .post-content {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #806767; /* 잘 보이도록 색상 변경 */
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.post-title {
+  font-size: 28px;
+  margin: 20px 0;
+  color: #333;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.post-writer, .post-date {
+  font-size: 14px;
+  margin: 0;
+}
+
+.post-divider {
+  border: none;
+  border-top: 1px dashed #ccc;
+  margin: 20px 0;
+}
+
+.post-content {
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 20px;
+  color: #333;
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
+  margin-left: 0; /* 왼쪽 여백 제거 */
+}
+

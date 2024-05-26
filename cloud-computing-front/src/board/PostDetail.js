@@ -24,8 +24,11 @@ const PostDetail = () => {
       {post ? (
         <>
           <h1 className="post-title">{post.title}</h1>
-          <p className="post-writer">작성자: {post.nickname}</p>
-          <p className="post-date">{new Date(post.createdTime).toLocaleDateString()}</p>
+          <div className="post-meta">
+            <p className="post-writer">작성자: {post.nickname}</p>
+            <p className="post-date">{new Date(post.createdTime).toLocaleDateString()}</p>
+          </div>
+          <hr className="post-divider" />
           <div className="post-content">{post.content}</div>
         </>
       ) : (

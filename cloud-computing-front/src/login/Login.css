@@ -1,4 +1,3 @@
-/* src/login/Login.css */
 .login-container {
   display: flex;
   justify-content: center;
@@ -48,13 +47,18 @@
 
 .login-button img {
   margin-right: 10px;
-  width: 24px; 
-  height: 24px; 
+  width: 24px;
+  height: 24px;
 }
 
 .kakao {
   background-color: #ffeb00;
   color: #3c1e1e;
+}
+
+.kakao:hover {
+  background-color: #e0d500; /* 호버 시 색상 변경 */
+  color: #3c1e1e; /* 호버 시 글자색 유지 */
 }
 
 .google {
@@ -63,7 +67,17 @@
   border: 1px solid #ccc;
 }
 
+.google:hover {
+  background-color: #e6e6e6; /* 호버 시 색상 변경 */
+  color: #3c1e1e; /* 호버 시 글자색 유지 */
+}
+
 .guest {
   background-color: #4e4e4e;
   color: #fff;
+}
+
+.guest:hover {
+  background-color: #3c3c3c; /* 호버 시 색상 변경 */
+  color: #fff; /* 호버 시 글자색 유지 */
 }

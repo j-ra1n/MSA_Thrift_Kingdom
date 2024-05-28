@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BulletinBoard.css';
 
-const BulletinBoard = () => {
+const BulletinBoard = ({ isGuest }) => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState('');
-  const [nickname, setNickname] = useState('');  
+  const [nickname, setNickname] = useState('');
   const [content, setContent] = useState('');
   const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +26,12 @@ const BulletinBoard = () => {
   };
 
   const handleCreatePost = () => {
-    const newPost = { title, nickname, content };  
+    if (isGuest) {
+      alert('게시글을 작성할 수 없습니다. 로그인 해주세요.');
+      return;
+    }
+
+    const newPost = { title, nickname, content };
 
     fetch('http://localhost:8082/board/', {
       method: 'POST',
@@ -37,11 +42,11 @@ const BulletinBoard = () => {
     })
     .then(response => response.text())
     .then(() => {
-      setShowModal(false); 
+      setShowModal(false);
       setTitle('');
-      setNickname('');  
+      setNickname('');
       setContent('');
-      fetchPosts(); 
+      fetchPosts();
     })
     .catch(error => console.error('Error creating post:', error));
   };
@@ -50,7 +55,7 @@ const BulletinBoard = () => {
     <div className="board-container">
       <button className="back-button" onClick={handleBackClick}>←</button>
       <h1 className="board-title">자유의 방</h1>
-      <button className="create-button" onClick={() => setShowModal(true)}>글 작성</button>
+      {!isGuest && <button className="create-button" onClick={() => setShowModal(true)}>글 작성</button>}
       <table className="board-table">
         <thead>
           <tr>
@@ -93,7 +98,7 @@ const BulletinBoard = () => {
             </div>
             <div className="form-group">
               <label>작성자</label>
-              <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />  
+              <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
             </div>
             <div className="form-group">
               <label>내용</label>

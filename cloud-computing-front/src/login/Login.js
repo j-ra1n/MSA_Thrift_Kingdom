@@ -5,7 +5,6 @@ import googleImage from '../images/google.png';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
-
   const handleLogin = async (platform) => {
     try {
       const response = await fetch(`http://localhost:8081/auth/loginPage?platform=${platform}`);
@@ -23,6 +22,7 @@ const Login = ({ onLogin }) => {
 
   const handleKakaoLogin = () => handleLogin('KAKAO');
   const handleGoogleLogin = () => handleLogin('GOOGLE');
+  const handleGuestLogin = () => onLogin(true);
 
   return (
     <div className="login-container">
@@ -38,7 +38,7 @@ const Login = ({ onLogin }) => {
           <img src={googleImage} alt="Google" className="button-image" />
           Google로 시작하기
         </button>
-        <button className="login-button guest" onClick={onLogin}>구경만 할게요</button>
+        <button className="login-button guest" onClick={handleGuestLogin}>구경만 할게요</button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './PostDetail.css';
 import Comment from './Comment';
 
-const PostDetail = () => {
+const PostDetail = ({ isGuest }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
@@ -50,7 +50,7 @@ const PostDetail = () => {
           )
         )}
       </div>
-      <Comment boardId={id} />
+      <Comment boardId={id} isGuest={isGuest} />
     </div>
   );
 };

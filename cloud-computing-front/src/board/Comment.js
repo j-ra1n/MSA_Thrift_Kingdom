@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Comment.css';
 
-const Comment = ({ boardId }) => {
+const Comment = ({ boardId, isGuest }) => {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
@@ -27,6 +27,11 @@ const Comment = ({ boardId }) => {
   };
 
   const handleCreateComment = () => {
+    if (isGuest) {
+      alert('댓글을 작성할 수 없습니다. 로그인 해주세요.');
+      return;
+    }
+
     const newComment = { content, nickname, boardId };
 
     fetch(`http://localhost:8083/comment/${boardId}`, {
@@ -47,21 +52,17 @@ const Comment = ({ boardId }) => {
       setNickname('');
       fetchComments();
     })
-    .catch(error => {
-      console.error('Error creating comment:', error);
-      setError('댓글을 작성할 수 없습니다. 나중에 다시 시도해주세요.');
-    });
+    .catch(error => console.error('Error creating comment:', error));
   };
 
   return (
     <div className="comment-section">
-      <h2>comment</h2>
+      <h2>댓글</h2>
       {error && <p className="error-message">{error}</p>}
       <div className="comment-list">
         {comments.map((comment, index) => (
           <div key={comment.id} className="comment">
             <p className="comment-nickname">{comment.nickname}</p>
-            <br></br><br></br>
             <p className="comment-content">{comment.content}</p>
           </div>
         ))}

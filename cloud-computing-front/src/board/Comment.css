@@ -1,0 +1,74 @@
+.comment-section {
+  width: 40%; /* 너비 조정 */
+  margin: 0 10px; /* 좌우 여백 추가 */
+  padding: 20px; /* 패딩을 크게 설정 */
+  overflow-y: auto;
+  background-color: #694e4e; /* 배경색 변경 */
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.comment-list {
+  margin-bottom: 10px; /* 마진을 줄임 */
+}
+
+.comment {
+  padding: 10px; /* 패딩을 조정 */
+  border-bottom: 1px solid #EAD4AA;
+  display: flex; /* 플렉스 박스 사용 */
+  align-items: center; /* 수직 정렬 */
+}
+
+.comment-nickname {
+  font-weight: bold;
+  color: #ffeb00; /* 텍스트 색상 변경 */
+  margin-right: 10px; /* 오른쪽 여백 추가 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.comment-content {
+  margin-top: 0; /* 마진 제거 */
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+  flex: 1; /* 남은 공간을 차지 */
+}
+
+.comment-form {
+  margin-top: 10px; /* 마진을 줄임 */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 10px; /* 마진을 줄임 */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px; /* 패딩을 조정 */
+  font-size: 14px; /* 크기를 줄임 */
+  border: 1px solid #EAD4AA;
+  border-radius: 5px;
+  background-color: #3b2424; /* 배경색 변경 */
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+button {
+  padding: 10px 20px; /* 패딩을 조정 */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
+}
+
+button:hover {
+  background-color: #0056b3;
+}

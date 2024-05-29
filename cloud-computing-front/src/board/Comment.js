@@ -1,25 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useUser } from '../context/UserContext';
 import './Comment.css';
 
 const Comment = ({ boardId, isGuest }) => {
+  const { user } = useUser();
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [error, setError] = useState(null);
+  const anonymousMap = useRef(new Map());  // 사용자별 익명 번호를 저장할 맵
+  const anonymousCounter = useRef(1);  // 익명 번호를 증가시킬 카운터
 
   useEffect(() => {
     fetchComments();
   }, []);
 
   const fetchComments = () => {
-    fetch(`http://localhost:8083/comment/list/${boardId}`)
+    fetch(`http://172.25.235.177:8082/comment/list/${boardId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then(data => setComments(data.content))
+      .then(data => {
+        setComments(data.content);
+        data.content.forEach(comment => {
+          if (comment.nickname.startsWith('익명')) {
+            const number = parseInt(comment.nickname.replace('익명', ''), 10);
+            if (!anonymousMap.current.has(comment.userId)) {
+              anonymousMap.current.set(comment.userId, number);
+              if (number >= anonymousCounter.current) {
+                anonymousCounter.current = number + 1;
+              }
+            }
+          }
+        });
+      })
       .catch(error => {
         console.error('Error fetching comments:', error);
         setError('댓글을 불러올 수 없습니다. 나중에 다시 시도해주세요.');
@@ -27,14 +44,22 @@ const Comment = ({ boardId, isGuest }) => {
   };
 
   const handleCreateComment = () => {
-    if (isGuest) {
+    if (isGuest || !user) {
       alert('댓글을 작성할 수 없습니다. 로그인 해주세요.');
       return;
     }
 
-    const newComment = { content, nickname, boardId };
+    let nickname = user.nickname;
+    if (isAnonymous) {
+      if (!anonymousMap.current.has(user.userId)) {
+        anonymousMap.current.set(user.userId, anonymousCounter.current++);
+      }
+      nickname = `익명${anonymousMap.current.get(user.userId)}`;
+    }
 
-    fetch(`http://localhost:8083/comment/${boardId}`, {
+    const newComment = { content, nickname, boardId, userId: user.userId };
+
+    fetch(`http://172.25.235.177:8082/comment/${boardId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,7 +74,7 @@ const Comment = ({ boardId, isGuest }) => {
     })
     .then(() => {
       setContent('');
-      setNickname('');
+      setIsAnonymous(false);
       fetchComments();
     })
     .catch(error => console.error('Error creating comment:', error));
@@ -68,14 +93,20 @@ const Comment = ({ boardId, isGuest }) => {
         ))}
       </div>
       <div className="comment-form">
+        <br></br>
         <div className="form-group">
-          <br></br>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
-        <button onClick={handleCreateComment}>작성</button>
+        <div className="form-group-inline">
+          <label className="anonymous-checkbox">
+            <input type="checkbox" checked={isAnonymous} onChange={() => setIsAnonymous(!isAnonymous)} />
+            익명
+          </label>
+          <button onClick={handleCreateComment}>작성</button>
+        </div>
       </div>
     </div>
   );

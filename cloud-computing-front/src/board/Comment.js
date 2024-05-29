@@ -8,6 +8,8 @@ const Comment = ({ boardId, isGuest }) => {
   const [content, setContent] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [error, setError] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editCommentId, setEditCommentId] = useState(null);
   const anonymousMap = useRef(new Map());  // 사용자별 익명 번호를 저장할 맵
   const anonymousCounter = useRef(1);  // 익명 번호를 증가시킬 카운터
 
@@ -43,7 +45,7 @@ const Comment = ({ boardId, isGuest }) => {
       });
   };
 
-  const handleCreateComment = () => {
+  const handleCreateOrUpdateComment = () => {
     if (isGuest || !user) {
       alert('댓글을 작성할 수 없습니다. 로그인 해주세요.');
       return;
@@ -59,8 +61,11 @@ const Comment = ({ boardId, isGuest }) => {
 
     const newComment = { content, nickname, boardId, userId: user.userId };
 
-    fetch(`http://172.25.235.177:8082/comment/${boardId}`, {
-      method: 'POST',
+    const url = editMode ? `http://172.25.235.177:8082/comment/${editCommentId}` : `http://172.25.235.177:8082/comment/${boardId}`;
+    const method = editMode ? 'PUT' : 'POST';
+
+    fetch(url, {
+      method: method,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -75,9 +80,17 @@ const Comment = ({ boardId, isGuest }) => {
     .then(() => {
       setContent('');
       setIsAnonymous(false);
+      setEditMode(false);
+      setEditCommentId(null);
       fetchComments();
     })
     .catch(error => console.error('Error creating comment:', error));
+  };
+
+  const handleEditComment = (comment) => {
+    setContent(comment.content);
+    setEditCommentId(comment.id);
+    setEditMode(true);
   };
 
   return (
@@ -89,11 +102,13 @@ const Comment = ({ boardId, isGuest }) => {
           <div key={comment.id} className="comment">
             <p className="comment-nickname">{comment.nickname}</p>
             <p className="comment-content">{comment.content}</p>
+            {comment.nickname === user.nickname && (
+              <span className="edit-link" onClick={() => handleEditComment(comment)}>수정</span>
+            )}
           </div>
         ))}
       </div>
       <div className="comment-form">
-        <br></br>
         <div className="form-group">
           <textarea
             value={content}
@@ -105,7 +120,7 @@ const Comment = ({ boardId, isGuest }) => {
             <input type="checkbox" checked={isAnonymous} onChange={() => setIsAnonymous(!isAnonymous)} />
             익명
           </label>
-          <button onClick={handleCreateComment}>작성</button>
+          <button onClick={handleCreateOrUpdateComment}>{editMode ? '수정' : '작성'}</button>
         </div>
       </div>
     </div>

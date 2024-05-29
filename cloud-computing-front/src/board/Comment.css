@@ -62,7 +62,7 @@
 
 button {
   padding: 10px 20px; /* 패딩을 조정 */
-  background-color: #007bff;
+  background-color: #4d5c6d;
   color: white;
   border: none;
   cursor: pointer;
@@ -70,6 +70,20 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2e4258;
 }
 
+.board-table td {
+  position: relative;
+}
+
+.edit-link {
+  cursor: pointer;
+  color: rgb(155, 141, 79);
+  text-decoration: underline;
+  margin-left: 10px; /* 필요한 경우 간격 조절 */
+}
+
+.edit-link:hover {
+  color: darkblue;
+}

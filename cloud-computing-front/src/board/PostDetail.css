@@ -33,7 +33,7 @@
 }
 
 .back-button:hover {
-  color: #d1c0c0; /* 호버 시에도 색상 변경 방지 */
+  color: #d1c0c0; /* 호버 시 색상 변경 */
 }
 
 .post-title {
@@ -58,4 +58,53 @@
 .post-content {
   white-space: pre-wrap;
   color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+.edit-button, .save-button {
+  background-color: #4d5c6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  margin-top: 100px; /* 위쪽 마진 추가 */
+}
+
+.cancel-button {
+  background-color: #4d5c6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.edit-button:hover, .save-button:hover, .cancel-button:hover {
+  background-color: #0056b3;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #EAD4AA;
+  border-radius: 5px;
+  background-color: #3b2424;
+  color: #EAD4AA;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* 좌우 끝으로 정렬 */
+  align-items: center;
 }

@@ -20,7 +20,7 @@ public class BbServerApplication {
 
 	@GetMapping(value = "/demo")
 	public String doGetHelloWorldDemo() {
-		return "Hello World (Demo)";
+		return "Hello World (Demo, Jenkins)";
 	}
 
 	@GetMapping(value = "/jenkins")

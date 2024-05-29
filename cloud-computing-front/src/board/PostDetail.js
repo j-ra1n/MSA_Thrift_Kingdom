@@ -14,7 +14,7 @@ const PostDetail = ({ isGuest }) => {
   }, []);
 
   const fetchPost = () => {
-    fetch(`http://localhost:8082/board/${id}`)
+    fetch(`http://172.25.235.177:8080/board/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

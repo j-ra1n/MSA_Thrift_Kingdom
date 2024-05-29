@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import './BulletinBoard.css';
 
 const BulletinBoard = ({ isGuest }) => {
   const navigate = useNavigate();
+  const { user } = useUser();
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState('');
-  const [nickname, setNickname] = useState('');
   const [content, setContent] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   const fetchPosts = () => {
-    fetch('http://localhost:8082/board/list')
+    fetch('http://172.25.235.177:8080/board/list')
       .then(response => response.json())
       .then(data => setPosts(data.content))
       .catch(error => console.error('Error fetching posts:', error));
@@ -26,14 +28,14 @@ const BulletinBoard = ({ isGuest }) => {
   };
 
   const handleCreatePost = () => {
-    if (isGuest) {
+    if (isGuest || !user) {
       alert('게시글을 작성할 수 없습니다. 로그인 해주세요.');
       return;
     }
 
-    const newPost = { title, nickname, content };
+    const newPost = { title, nickname: isAnonymous ? '익명' : user.nickname, content };
 
-    fetch('http://localhost:8082/board/', {
+    fetch('http://172.25.235.177:8080/board/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +46,6 @@ const BulletinBoard = ({ isGuest }) => {
     .then(() => {
       setShowModal(false);
       setTitle('');
-      setNickname('');
       setContent('');
       fetchPosts();
     })
@@ -98,11 +99,17 @@ const BulletinBoard = ({ isGuest }) => {
             </div>
             <div className="form-group">
               <label>작성자</label>
-              <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
+              <input type="text" value={isAnonymous ? '익명' : user ? user.nickname : ''} disabled />
             </div>
             <div className="form-group">
               <label>내용</label>
               <textarea value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+            </div>
+            <div className="form-group">
+              <label>
+                <input type="checkbox" checked={isAnonymous} onChange={() => setIsAnonymous(!isAnonymous)} />
+                익명으로 게시
+              </label>
             </div>
             <button className="modal-create-button" onClick={handleCreatePost}>작성</button>
           </div>

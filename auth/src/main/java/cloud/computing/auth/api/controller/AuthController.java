@@ -22,6 +22,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -67,15 +68,14 @@ public class AuthController {
             @RequestParam("state") String loginState,
             HttpServletResponse response) throws IOException {
 
-        // state 값이 유효한지 검증
         if (!loginStateService.isValidLoginState(loginState)) {
             throw new OAuthException(ExceptionMessage.LOGINSTATE_INVALID_VALUE);
         }
 
         AuthLoginResponse loginResponse = authService.login(platformType, code, loginState);
 
-        // 로그인 처리가 완료되면 메인 페이지로 리디렉션
-        String redirectUrl = "http://localhost:3000/doors?loggedIn=true";
+        // 로그인 응답 객체에 사용자 정보 추가
+        String redirectUrl = "http://localhost:3000/doors?loggedIn=true&nickname="+ URLEncoder.encode(loginResponse.getNickname(), "UTF-8");
         response.sendRedirect(redirectUrl);
     }
 

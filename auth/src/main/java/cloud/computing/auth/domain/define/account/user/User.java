@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -35,8 +34,8 @@ public class User implements UserDetails {
     @ColumnDefault(value = "'KAKAO'")
     private UserPlatformType platformType;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "NICKNAME")
+    private String nickname;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE")
@@ -47,20 +46,19 @@ public class User implements UserDetails {
     private String profileImageUrl;
 
     @Builder
-    public User(String platformId, UserPlatformType platformType, String name, UserRole role, String profileImageUrl) {
+    public User(String platformId, UserPlatformType platformType, String nickname, UserRole role, String profileImageUrl) {
         this.platformId = platformId;
         this.platformType = platformType;
-        this.name = name;
+        this.nickname = nickname;
         this.role = role;
         this.profileImageUrl = profileImageUrl;
     }
 
     // 회원가입 (UNAUTH -> USER)
-    public void updateRegister(String name) {
+    public void updateRegister(String nickname) {
         this.role = UserRole.USER;
-        this.name = name;
+        this.nickname = nickname;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

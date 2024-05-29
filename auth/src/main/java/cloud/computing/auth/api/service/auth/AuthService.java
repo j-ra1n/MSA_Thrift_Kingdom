@@ -58,7 +58,7 @@ public class AuthService {
                             .platformType(loginResponse.getPlatformType())
                             .role(UserRole.UNAUTH)
                             .profileImageUrl(profileImageUrl)
-                            .name(name)
+                            .nickname(name)
                             .build();
 
                     log.info(">>>> [ UNAUTH 권한으로 사용자를 DB에 등록합니다. 이후 회원가입이 필요합니다 ] <<<<");
@@ -77,6 +77,7 @@ public class AuthService {
                 .accessToken(jwtToken.getAccessToken())
                 .refreshToken(jwtToken.getRefreshToken())
                 .role(findUser.getRole())
+                .nickname(findUser.getNickname())
                 .build();
     }
 
@@ -93,8 +94,8 @@ public class AuthService {
 
         // Refresh Token 생성
         final String jwtRefreshToken = jwtService.generateRefreshToken(claims, user);
-        log.info(">>>> [ 사용자 {}님의 JWT 토큰이 발급되었습니다 ] <<<<", user.getName());
-        log.info(">>>> [ 사용자 {}님의 refresh 토큰이 발급되었습니다 ] <<<<", user.getName());
+        log.info(">>>> [ 사용자 {}님의 JWT 토큰이 발급되었습니다 ] <<<<", user.getNickname());
+        log.info(">>>> [ 사용자 {}님의 refresh 토큰이 발급되었습니다 ] <<<<", user.getNickname());
 
         // Refresh Token을 레디스에 저장
         RefreshToken refreshToken= RefreshToken.builder().refreshToken(jwtRefreshToken).subject(user.getUsername()).build();
@@ -145,7 +146,7 @@ public class AuthService {
         // Refresh Token 생성
         final String refreshToken = jwtService.generateRefreshToken(claims, user);
 
-        log.info(">>>> {} generate Tokens", user.getName());
+        log.info(">>>> {} generate Tokens", user.getNickname());
 
         // Refresh Token 저장 - REDIS
         RefreshToken rt = RefreshToken.builder()

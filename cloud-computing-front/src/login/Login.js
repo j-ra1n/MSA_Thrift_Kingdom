@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useUser } from '../context/UserContext';
 import beggarImage from '../images/begger.png';
 import kakaoImage from '../images/kakao.png';
 import googleImage from '../images/google.png';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
+  const { setUser } = useUser();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nickname = params.get('nickname');
+    if (nickname) {
+      setUser({ nickname });
+      onLogin(false);  // 로그인 상태를 업데이트합니다.
+    }
+  }, [setUser, onLogin]);
+
   const handleLogin = async (platform) => {
     try {
       const response = await fetch(`http://localhost:8081/auth/loginPage?platform=${platform}`);
@@ -22,7 +34,10 @@ const Login = ({ onLogin }) => {
 
   const handleKakaoLogin = () => handleLogin('KAKAO');
   const handleGoogleLogin = () => handleLogin('GOOGLE');
-  const handleGuestLogin = () => onLogin(true);
+  const handleGuestLogin = () => {
+    onLogin(true);
+    setUser({ nickname: 'Guest' });
+  };
 
   return (
     <div className="login-container">

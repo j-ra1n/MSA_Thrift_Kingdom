@@ -82,7 +82,9 @@ const ItemDetail = () => {
 
   const handleLinkClick = (e) => {
     e.preventDefault();
-    window.open(url.startsWith('http') ? url : `http://${url}`, '_blank');
+    if (url) {
+      window.open(url.startsWith('http') ? url : `http://${url}`, '_blank');
+    }
   };
 
   if (!item) return <div>Loading...</div>;
@@ -93,7 +95,7 @@ const ItemDetail = () => {
       <h2 className="item-title">{item.productName}</h2>
       <p>{item.price}원</p>
       <p>
-        <a href={url.startsWith('http') ? url : `http://${url}`} onClick={handleLinkClick} style={{ color: '#2a82bd' }}>
+        <a href={url && (url.startsWith('http') ? url : `http://${url}`)} onClick={handleLinkClick} style={{ color: '#4787e7' }}>
           {url}
         </a>
       </p>

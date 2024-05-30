@@ -8,7 +8,7 @@ const SharingBoard = () => {
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
   const [nickname, setNickname] = useState('');
-  const [location, setLocation] = useState('');
+  const [url, setUrl] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedItem, setSelectedItem] = useState(null); // 선택된 아이템 상태 변수 추가
@@ -30,7 +30,7 @@ const SharingBoard = () => {
   };
 
   const handleCreateItem = () => {
-    const newItem = { productName, price, nickname, location };
+    const newItem = { productName, price, nickname, url };
 
     fetch('http://172.25.235.177:8081/item/', {
       method: 'POST',
@@ -46,7 +46,7 @@ const SharingBoard = () => {
       setProductName('');
       setPrice('');
       setNickname('');
-      setLocation('');
+      setUrl('');
     })
     .catch(error => console.error('아이템을 생성하는 중 에러 발생:', error));
   };
@@ -108,7 +108,12 @@ const SharingBoard = () => {
             </div>
             <div className="form-group">
               <label>가격</label>
-              <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+              <input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(Math.floor(e.target.value / 1000) * 1000)}
+                step="1000"
+              />
             </div>
             <div className="form-group">
               <label>작성자</label>
@@ -116,7 +121,7 @@ const SharingBoard = () => {
             </div>
             <div className="form-group">
               <label>위치 또는 링크</label>
-              <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+              <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
             </div>
             <button className="modal-create-button" onClick={handleCreateItem}>작성</button>
           </div>
@@ -124,12 +129,12 @@ const SharingBoard = () => {
       )}
 
       {selectedItem && (
-        <div className="modal-overlay" onClick={handleCloseDetails}>
+        <div className="modal-overlay">
           <div className="modal">
             <button className="modal-back-button" onClick={handleCloseDetails}>←</button>
             <h2 className="modal-title">{selectedItem.productName}</h2>
             <p>가격: {selectedItem.price}원</p>
-            <p>위치: {selectedItem.location}</p>
+            <p>위치: {selectedItem.url}</p>
             <p>작성자: {selectedItem.nickname}</p>
           </div>
         </div>

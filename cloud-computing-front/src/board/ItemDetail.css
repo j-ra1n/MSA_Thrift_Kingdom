@@ -34,7 +34,7 @@
 }
 
 .edit-button, .delete-button {
-  background-color: #E88B8B;
+  background-color: #a06c6c;
   border: none;
   color: #FFFFFF;
   padding: 5px 10px;
@@ -67,7 +67,7 @@ input {
 }
 
 .modal-update-button {
-  background-color: #E88B8B;
+  background-color: #9e6d6d;
   border: none;
   color: #FFFFFF;
   padding: 10px 20px;

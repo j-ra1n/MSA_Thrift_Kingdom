@@ -42,4 +42,9 @@ public class BbServerApplication {
 	public String testWebhook5() {
 		return "webhook5";
 	}
+
+	@GetMapping(value = "/webhook6")
+	public String testWebhook6() {
+		return "webhook6";
+	}
 }

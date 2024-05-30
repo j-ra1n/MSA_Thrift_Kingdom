@@ -80,6 +80,11 @@ const ItemDetail = () => {
     navigate('/sharing');
   };
 
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    window.open(url.startsWith('http') ? url : `http://${url}`, '_blank');
+  };
+
   if (!item) return <div>Loading...</div>;
 
   return (
@@ -87,7 +92,11 @@ const ItemDetail = () => {
       <button className="back-button" onClick={handleBackClick}>←</button>
       <h2 className="item-title">{item.productName}</h2>
       <p>{item.price}원</p>
-      <p>{item.url}</p>
+      <p>
+        <a href={url.startsWith('http') ? url : `http://${url}`} onClick={handleLinkClick} style={{ color: '#2a82bd' }}>
+          {url}
+        </a>
+      </p>
       <div className="item-footer">
         <span className="item-nickname">{item.nickname}</span>
         <span className="item-date">{item.date}</span>

@@ -20,6 +20,18 @@
   position: relative; /* 절대 위치를 위한 상대 위치 지정 */
 }
 
+.form-group textarea {
+  width: 100%;
+  height: auto;  /* 내용에 따라 높이가 자동으로 조절됩니다 */
+  min-height: 500px;  /* 최소 높이를 150픽셀로 설정 */
+  padding: 10px;
+  border: 1px solid #EAD4AA;
+  border-radius: 5px;
+  background-color: #3b2424;
+  color: #EAD4AA;
+}
+
+
 .back-button {
   background: none;
   border: none;

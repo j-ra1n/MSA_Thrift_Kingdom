@@ -73,7 +73,7 @@
 }
 
 .edit-button, .save-button {
-  background-color: #4d5c6d; /* 수정 및 저장 버튼은 동일한 스타일 유지 */
+  background-color: #a06c6c; /* 수정 및 저장 버튼은 동일한 스타일 유지 */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -83,7 +83,7 @@
 }
 
 .cancel-button {
-  background-color: #8a2e2e; /* 취소 버튼은 빨간색 배경으로 변경 */
+  background-color: #a06c6c; /* 취소 버튼은 빨간색 배경으로 변경 */
   color: white;
   border: none;
   padding: 10px 20px;

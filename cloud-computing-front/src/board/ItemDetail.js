@@ -122,7 +122,7 @@ const ItemDetail = () => {
                 <input
                   type="number"
                   value={price}
-                  onChange={(e) => setPrice(Math.floor(e.target.value / 1000) * 1000)}
+                  onChange={(e) => setPrice(e.target.value)}
                   step="1000"
                 />
               </div>

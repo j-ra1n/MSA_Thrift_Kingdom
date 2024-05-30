@@ -34,7 +34,7 @@
     margin: 0 auto 20px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4CAF50;
+    background-color: #a77777;
     color: white;
     border: none;
     border-radius: 5px;
@@ -42,7 +42,7 @@
   }
   
   .create-button:hover {
-    background-color: #45a049;
+    background-color: #916868;
   }
   
   .board-table {
@@ -117,7 +117,7 @@
     background: none;
     border: none;
     font-size: 24px;
-    color: #FF6347; /* 잘 보이도록 색상 변경 */
+    color: #ac5b4d; /* 잘 보이도록 색상 변경 */
     cursor: pointer;
     position: absolute;
     top: 20px;

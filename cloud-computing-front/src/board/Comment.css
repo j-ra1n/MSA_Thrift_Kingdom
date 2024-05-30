@@ -3,7 +3,7 @@
   margin: 0 10px; /* 좌우 여백 추가 */
   padding: 20px; /* 패딩을 크게 설정 */
   overflow-y: auto;
-  background-color: #694e4e; /* 배경색 변경 */
+  background-color: #7e5e5e; /* 배경색 변경 */
   color: #EAD4AA; /* 텍스트 색상 변경 */
   border-radius: 10px; /* 모서리 둥글게 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
@@ -49,19 +49,23 @@
   color: #EAD4AA; /* 텍스트 색상 변경 */
 }
 
-.form-group input,
-.form-group textarea {
+.form-group input, .form-group textarea {
   width: 100%;
-  padding: 10px; /* 패딩을 조정 */
+  padding: 8px; /* 패딩을 줄임 */
   font-size: 14px; /* 크기를 줄임 */
   border: 1px solid #EAD4AA;
   border-radius: 5px;
-  background-color: #3b2424; /* 배경색 변경 */
+  background-color: #664343; /* 배경색 변경 */
   color: #EAD4AA; /* 텍스트 색상 변경 */
 }
 
+.form-group textarea {
+  min-height: 80px; /* 최소 높이를 80픽셀로 설정 */
+  max-height: 150px; /* 최대 높이를 150픽셀로 설정 */
+}
+
 button {
-  padding: 10px 20px; /* 패딩을 조정 */
+  padding: 8px 16px; /* 패딩을 줄임 */
   background-color: #4d5c6d;
   color: white;
   border: none;

@@ -4,11 +4,16 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '3'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker_credentials	')
+    DOCKERHUB_CREDENTIALS = credentials('docker_credentials')
     repository = "99koo/cm-server"
     dockerImage = ''
   }
   stages {
+    stage('Set Executable Permissions') {
+      steps {
+        sh 'chmod +x gradlew'
+      }
+    }
     stage('Gradle Build') {
       steps {
         sh './gradlew clean build'

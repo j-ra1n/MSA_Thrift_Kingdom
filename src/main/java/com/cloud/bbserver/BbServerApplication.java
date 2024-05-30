@@ -22,4 +22,9 @@ public class BbServerApplication {
 	public String doGetHelloWorldDemo() {
 		return "Hello World (Demo)";
 	}
+
+	@GetMapping(value = "/webhook")
+	public String testWebhook() {
+		return "webhook";
+	}
 }

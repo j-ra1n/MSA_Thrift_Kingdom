@@ -93,6 +93,25 @@ const Comment = ({ boardId, isGuest }) => {
     setEditMode(true);
   };
 
+  const handleDeleteComment = (id) => {
+    const confirmDelete = window.confirm('댓글을 삭제하시겠습니까?');
+    if (confirmDelete) {
+      fetch(`http://172.25.235.177:8082/comment/${id}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(() => {
+        fetchComments();
+      })
+      .catch(error => console.error('Error deleting comment:', error));
+    }
+  };
+
   return (
     <div className="comment-section">
       <h2>댓글</h2>
@@ -103,7 +122,10 @@ const Comment = ({ boardId, isGuest }) => {
             <p className="comment-nickname">{comment.nickname}</p>
             <p className="comment-content">{comment.content}</p>
             {comment.nickname === user.nickname && (
-              <span className="edit-link" onClick={() => handleEditComment(comment)}>수정</span>
+              <>
+                <span className="edit-link" onClick={() => handleEditComment(comment)}>수정</span>
+                <span className="delete-link" onClick={() => handleDeleteComment(comment.id)}>삭제</span>
+              </>
             )}
           </div>
         ))}

@@ -87,3 +87,14 @@ button:hover {
 .edit-link:hover {
   color: darkblue;
 }
+
+.delete-link {
+  cursor: pointer;
+  color: rgb(155, 141, 79);
+  text-decoration: underline;
+  margin-left: 10px; /* 필요한 경우 간격 조절 */
+}
+
+.delete-link:hover {
+  color: #2e4258;
+}

@@ -28,8 +28,8 @@ public class BbServerApplication {
 		return "webhook";
 	}
 
-	@GetMapping(value = "/webhook2")
+	@GetMapping(value = "/webhook3")
 	public String testWebhook2() {
-		return "webhook2";
+		return "webhook3";
 	}
 }

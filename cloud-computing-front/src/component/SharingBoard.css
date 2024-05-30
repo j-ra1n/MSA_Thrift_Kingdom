@@ -28,7 +28,7 @@
 }
 
 .create-button {
-  background-color: #E88B8B;
+  background-color: #705a5a;
   border: none;
   color: #FFFFFF;
   padding: 10px 20px;
@@ -54,6 +54,7 @@
   color: #EAD4AA;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   flex: 0 0 30%; /* 한 행에 3개 아이템 표시 */
+  cursor: pointer; /* 클릭 가능한 커서로 변경 */
 }
 
 .item-box h2 {
@@ -68,7 +69,7 @@
 }
 
 .pagination-buttons button {
-  background-color: #a87878;
+  background-color: #705a5a;
   border: none;
   color: #FFFFFF;
   padding: 10px 20px;

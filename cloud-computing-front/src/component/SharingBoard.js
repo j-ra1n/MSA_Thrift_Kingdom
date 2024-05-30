@@ -79,8 +79,6 @@ const SharingBoard = () => {
           <div key={item.id} className="item-box" onClick={() => handleItemClick(item)}>
             <h2>{item.productName}</h2>
             <p>{item.price}원</p>
-            <p>{item.location}</p>
-            <p>{item.nickname}</p>
           </div>
         ))}
       </div>

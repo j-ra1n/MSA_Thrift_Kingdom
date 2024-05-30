@@ -61,29 +61,47 @@
 }
 
 .edit-button, .save-button {
-  background-color: #4d5c6d;
+  background-color: #4d5c6d; /* 수정 및 저장 버튼은 동일한 스타일 유지 */
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  margin-right: 10px;
-  display: flex;
-  justify-content: center; /* 가운데 정렬 */
-  margin-top: 100px; /* 위쪽 마진 추가 */
+  display: inline-block;
+  margin-right: 600px; /* 수정 버튼 오른쪽에 공간 추가 */
 }
 
 .cancel-button {
-  background-color: #4d5c6d;
+  background-color: #8a2e2e; /* 취소 버튼은 빨간색 배경으로 변경 */
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  margin-right: 10px;
+  display: inline-block;
+
 }
 
-.edit-button:hover, .save-button:hover, .cancel-button:hover {
-  background-color: #0056b3;
+.edit-button:hover, .save-button:hover {
+  background-color: #365474; /* 수정 및 저장 버튼 호버 색상 변경 */
 }
+
+.cancel-button:hover {
+  background-color: #b33a3a; /* 취소 버튼 호버 색상 변경 */
+}
+
+.delete-button {
+  background-color: #640505; /* 삭제 버튼은 더 어두운 빨간색으로 설정 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+   /* 왼쪽 마진을 추가하여 버튼 사이에 간격을 줍니다 */
+}
+
+.delete-button:hover {
+  background-color: #b43636; /* 호버 시 밝은 빨간색으로 변경 */
+}
+
 
 .form-group {
   margin-bottom: 20px;
@@ -107,4 +125,5 @@
   display: flex;
   justify-content: space-between; /* 좌우 끝으로 정렬 */
   align-items: center;
+  margin-top: 10px; /* 추가적인 상단 마진 제공 */
 }

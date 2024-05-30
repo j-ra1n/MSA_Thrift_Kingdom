@@ -70,6 +70,25 @@ const PostDetail = ({ isGuest }) => {
     });
   };
 
+  const handleDelete = () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      fetch(`http://172.25.235.177:8080/board/${id}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        alert('게시글이 삭제되었습니다');
+        navigate('/bulletin');
+      })
+      .catch(error => {
+        console.error('Error deleting post:', error);
+        setError('게시글을 삭제할 수 없습니다. 나중에 다시 시도해주세요.');
+      });
+    }
+  };
+
   return (
     <div className="post-detail-container">
       <div className="post-detail-content">
@@ -112,7 +131,10 @@ const PostDetail = ({ isGuest }) => {
                   <hr className="post-divider" />
                   <div className="post-content">{post.content}</div>
                   {post.nickname === user.nickname && (
-                    <button className="edit-button" onClick={handleEditClick}>수정</button>
+                    <>
+                      <button className="edit-button" onClick={handleEditClick}>수정</button>
+                      <button className="delete-button" onClick={handleDelete}>삭제</button>
+                    </>
                   )}
                 </>
               )}

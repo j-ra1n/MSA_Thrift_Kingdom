@@ -22,4 +22,9 @@ public class CmServerApplication {
 	public String doGetHelloWorldDemo() {
 		return "Hello World (Demo)";
 	}
+
+	@GetMapping(value = "/jenkins")
+	public String testJenkins() {
+		return "jenkins";
+	}
 }

@@ -7,6 +7,7 @@ import Door from './component/Door';
 import BulletinBoard from './component/BulletinBoard';
 import SharingBoard from './component/SharingBoard';
 import PostDetail from './board/PostDetail';
+import ItemDetail from './board/ItemDetail';
 import { useUser } from './context/UserContext';
 
 function useQuery() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/bulletin" element={isLoggedIn ? <BulletinBoard isGuest={isGuest} /> : <Navigate to="/" />} />
         <Route path="/bulletin/:id" element={isLoggedIn ? <PostDetail isGuest={isGuest} /> : <Navigate to="/" />} />
         <Route path="/sharing" element={isLoggedIn ? <SharingBoard /> : <Navigate to="/" />} />
+        <Route path="/item/:id" element={isLoggedIn ? <ItemDetail /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );

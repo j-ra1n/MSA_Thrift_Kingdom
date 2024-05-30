@@ -103,16 +103,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20; /* 모달이 다른 요소들보다 앞에 오도록 z-index 설정 */
 }
 
 .modal {
-  background: #523F37;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  color: #EAD4AA;
-  position: relative;
+  background: #3E2723 !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  width: 44% !important; /* 너비를 넓게 설정 */
+  max-width: 800px !important; /* 최대 너비를 더 넓게 설정 */
+  max-height: 72vh !important; /* 최대 높이를 줄임 */
+  overflow-y: auto !important; /* 내용이 넘칠 경우 스크롤 표시 */
+  color: #EAD4AA !important;
+  position: relative !important;
+  z-index: 21 !important; /* 모달이 다른 요소들보다 앞에 오도록 z-index 설정 */
 }
 
 .modal-close-button {
@@ -141,25 +145,35 @@
 }
 
 .form-group input, .form-group textarea {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100% !important;
+  padding: 8px !important;
+  font-size: 16px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+}
+
+.form-group textarea {
+  height: 100% !important; /* 내용 입력 창의 높이를 줄임 */
+}
+
+.checkbox-group {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px; /* 위쪽 간격 조정 */
+}
+
+.checkbox-group input {
+  margin-left: 450px; /* 체크박스와 레이블 간의 간격 조정 */
 }
 
 .modal-create-button {
   display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #FF6347;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal-create-button:hover {
-  background-color: #d9534f;
+  width: 100% !important;
+  padding: 10px !important;
+  font-size: 16px !important;
+  background-color: #ac6659 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 500px !important;
+  cursor: pointer !important;
 }

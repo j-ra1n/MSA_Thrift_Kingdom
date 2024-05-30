@@ -108,7 +108,7 @@ const BulletinBoard = ({ isGuest }) => {
             <div className="form-group">
               <label>
                 <input type="checkbox" checked={isAnonymous} onChange={() => setIsAnonymous(!isAnonymous)} />
-                익명으로 게시
+                익명
               </label>
             </div>
             <button className="modal-create-button" onClick={handleCreatePost}>작성</button>

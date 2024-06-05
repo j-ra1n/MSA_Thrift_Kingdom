@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import './ItemDetail.css';
+import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 
 const ItemDetail = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const ItemDetail = () => {
   }, [id]);
 
   const fetchItem = () => {
-    fetch(`http://172.25.235.177:8081/item/${id}`)
+    fetch(`${SB_BASE_URL}/item/${id}`)
       .then(response => response.json())
       .then(data => {
         setItem(data);
@@ -32,47 +33,47 @@ const ItemDetail = () => {
   const handleUpdateItem = () => {
     const updatedItem = { ...item, productName, price, url };
 
-    fetch(`http://172.25.235.177:8081/item/${id}`, {
+    fetch(`${SB_BASE_URL}/item/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(updatedItem)
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();  // JSON이 아닐 경우 텍스트로 받음
-    })
-    .then(text => {
-      try {
-        const json = JSON.parse(text); // JSON 파싱 시도
-        setItem(json);
-      } catch (error) {
-        console.warn('Response is not JSON:', text);
-      }
-      setIsEditing(false);
-      navigate('/sharing'); // 수정 완료 후 공유의 방 화면으로 전환
-    })
-    .catch(error => console.error('아이템을 수정하는 중 에러 발생:', error));
-  };
-
-  const handleDeleteItem = () => {
-    if (window.confirm('게시물을 삭제하시겠습니까?')) {
-      fetch(`http://172.25.235.177:8081/item/${id}`, {
-        method: 'DELETE'
-      })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.text();
+        return response.text();  // JSON이 아닐 경우 텍스트로 받음
       })
-      .then(() => {
-        navigate('/sharing'); // 삭제 완료 후 공유의 방 화면으로 전환
+      .then(text => {
+        try {
+          const json = JSON.parse(text); // JSON 파싱 시도
+          setItem(json);
+        } catch (error) {
+          console.warn('Response is not JSON:', text);
+        }
+        setIsEditing(false);
+        navigate('/sharing'); // 수정 완료 후 공유의 방 화면으로 전환
       })
-      .catch(error => console.error('아이템을 삭제하는 중 에러 발생:', error));
+      .catch(error => console.error('아이템을 수정하는 중 에러 발생:', error));
+  };
+
+  const handleDeleteItem = () => {
+    if (window.confirm('게시물을 삭제하시겠습니까?')) {
+      fetch(`${SB_BASE_URL}/item/${id}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(() => {
+          navigate('/sharing'); // 삭제 완료 후 공유의 방 화면으로 전환
+        })
+        .catch(error => console.error('아이템을 삭제하는 중 에러 발생:', error));
     }
   };
 

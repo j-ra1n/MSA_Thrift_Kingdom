@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useUser } from '../context/UserContext';
 import './Comment.css';
+import { CM_BASE_URL } from '../fetch.js'; // 수정된 부분
 
 const Comment = ({ boardId, isGuest }) => {
   const { user } = useUser();
@@ -18,7 +19,7 @@ const Comment = ({ boardId, isGuest }) => {
   }, []);
 
   const fetchComments = () => {
-    fetch(`http://172.25.235.177:8082/comment/list/${boardId}`)
+    fetch(`${CM_BASE_URL}/comment/list/${boardId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -61,7 +62,7 @@ const Comment = ({ boardId, isGuest }) => {
 
     const newComment = { content, nickname, boardId, userId: user.userId };
 
-    const url = editMode ? `http://172.25.235.177:8082/comment/${editCommentId}` : `http://172.25.235.177:8082/comment/${boardId}`;
+    const url = editMode ? `${CM_BASE_URL}/comment/${editCommentId}` : `${CM_BASE_URL}/comment/${boardId}`;
     const method = editMode ? 'PUT' : 'POST';
 
     fetch(url, {
@@ -96,7 +97,7 @@ const Comment = ({ boardId, isGuest }) => {
   const handleDeleteComment = (id) => {
     const confirmDelete = window.confirm('댓글을 삭제하시겠습니까?');
     if (confirmDelete) {
-      fetch(`http://172.25.235.177:8082/comment/${id}`, {
+      fetch(`${CM_BASE_URL}/comment/${id}`, {
         method: 'DELETE',
       })
       .then(response => {

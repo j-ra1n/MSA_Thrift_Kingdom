@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { BB_BASE_URL } from '../fetch.js'; // 수정된 부분
 import './BulletinBoard.css';
 
 const BulletinBoard = ({ isGuest }) => {
@@ -17,7 +18,7 @@ const BulletinBoard = ({ isGuest }) => {
   }, []);
 
   const fetchPosts = () => {
-    fetch('http://172.25.235.177:8080/board/list')
+    fetch(BB_BASE_URL + '/board/list')
       .then(response => response.json())
       .then(data => setPosts(data.content))
       .catch(error => console.error('Error fetching posts:', error));
@@ -35,21 +36,21 @@ const BulletinBoard = ({ isGuest }) => {
 
     const newPost = { title, nickname: isAnonymous ? '익명' : user.nickname, content };
 
-    fetch('http://172.25.235.177:8080/board/', {
+    fetch(BB_BASE_URL + '/board/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newPost)
     })
-    .then(response => response.text())
-    .then(() => {
-      setShowModal(false);
-      setTitle('');
-      setContent('');
-      fetchPosts();
-    })
-    .catch(error => console.error('Error creating post:', error));
+      .then(response => response.text())
+      .then(() => {
+        setShowModal(false);
+        setTitle('');
+        setContent('');
+        fetchPosts();
+      })
+      .catch(error => console.error('Error creating post:', error));
   };
 
   return (

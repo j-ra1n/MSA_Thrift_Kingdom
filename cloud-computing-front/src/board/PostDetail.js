@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './PostDetail.css';
 import Comment from './Comment';
 import { useUser } from '../context/UserContext';
+import { BB_BASE_URL } from '../fetch.js'; // 수정된 부분
 
 const PostDetail = ({ isGuest }) => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const PostDetail = ({ isGuest }) => {
   }, []);
 
   const fetchPost = () => {
-    fetch(`http://172.25.235.177:8080/board/${id}`)
+    fetch(`${BB_BASE_URL}/board/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -49,43 +50,43 @@ const PostDetail = ({ isGuest }) => {
 
   const handleSaveEdit = () => {
     const updatedPost = { title, content };
-    fetch(`http://172.25.235.177:8080/board/${id}`, {
+    fetch(`${BB_BASE_URL}/board/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedPost),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      setIsEditing(false);
-      alert('수정 완료되었습니다');
-      navigate('/bulletin');
-    })
-    .catch(error => {
-      console.error('Error updating post:', error);
-      setError('게시글을 수정할 수 없습니다. 나중에 다시 시도해주세요.');
-    });
-  };
-
-  const handleDelete = () => {
-    if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      fetch(`http://172.25.235.177:8080/board/${id}`, {
-        method: 'DELETE'
-      })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        alert('게시글이 삭제되었습니다');
+        setIsEditing(false);
+        alert('수정 완료되었습니다');
         navigate('/bulletin');
       })
       .catch(error => {
-        console.error('Error deleting post:', error);
-        setError('게시글을 삭제할 수 없습니다. 나중에 다시 시도해주세요.');
+        console.error('Error updating post:', error);
+        setError('게시글을 수정할 수 없습니다. 나중에 다시 시도해주세요.');
       });
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      fetch(`${BB_BASE_URL}/board/${id}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          alert('게시글이 삭제되었습니다');
+          navigate('/bulletin');
+        })
+        .catch(error => {
+          console.error('Error deleting post:', error);
+          setError('게시글을 삭제할 수 없습니다. 나중에 다시 시도해주세요.');
+        });
     }
   };
 

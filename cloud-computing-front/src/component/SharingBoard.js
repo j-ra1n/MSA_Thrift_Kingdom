@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 import './SharingBoard.css';
 
 const SharingBoard = () => {
@@ -19,7 +20,7 @@ const SharingBoard = () => {
   }, []);
 
   const fetchItems = () => {
-    fetch('http://172.25.235.177:8081/item/list')
+    fetch(SB_BASE_URL + '/item/list')
       .then(response => response.json())
       .then(data => setItems(data.content))
       .catch(error => console.error('아이템을 불러오는 중 에러 발생:', error));
@@ -32,22 +33,22 @@ const SharingBoard = () => {
   const handleCreateItem = () => {
     const newItem = { productName, price, nickname: user.nickname, url };
 
-    fetch('http://172.25.235.177:8081/item/', {
+    fetch(SB_BASE_URL + '/item/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newItem)
     })
-    .then(response => response.json())
-    .then(() => {
-      fetchItems();
-      setShowModal(false);
-      setProductName('');
-      setPrice('');
-      setUrl('');
-    })
-    .catch(error => console.error('아이템을 생성하는 중 에러 발생:', error));
+      .then(response => response.json())
+      .then(() => {
+        fetchItems();
+        setShowModal(false);
+        setProductName('');
+        setPrice('');
+        setUrl('');
+      })
+      .catch(error => console.error('아이템을 생성하는 중 에러 발생:', error));
   };
 
   const handleItemClick = (itemId) => {

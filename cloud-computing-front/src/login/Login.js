@@ -4,6 +4,7 @@ import beggarImage from '../images/begger.png';
 import kakaoImage from '../images/kakao.png';
 import googleImage from '../images/google.png';
 import './Login.css';
+import { Login_BASE_URL } from '../fetch.js'; // 수정된 부분
 
 const Login = ({ onLogin }) => {
   const { setUser } = useUser();
@@ -19,7 +20,7 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async (platform) => {
     try {
-      const response = await fetch(`http://localhost:8081/auth/loginPage?platform=${platform}`);
+      const response = await fetch(`${Login_BASE_URL}/auth/loginPage?platform=${platform}`);
       const data = await response.json();
       if (data.resCode === 200) {
         const loginUrl = data.resObj;

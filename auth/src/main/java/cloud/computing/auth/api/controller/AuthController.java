@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -39,6 +40,11 @@ public class AuthController {
     private final OAuthService oAuthService;
 
     private final AuthService authService;
+
+
+
+    @Value("${login.page.url.production}") // 환경 변수 값 주입
+    private String loginPageUrlProduction;
 
 
     @GetMapping("/lP")
@@ -75,8 +81,8 @@ public class AuthController {
         AuthLoginResponse loginResponse = authService.login(platformType, code, loginState);
 
         // 로그인 응답 객체에 사용자 정보 추가
-        String redirectUrl = "http://localhost:3000/doors?loggedIn=true&nickname="+ URLEncoder.encode(loginResponse.getNickname(), "UTF-8");
-        response.sendRedirect(redirectUrl);
+        String loginPageUrl = loginPageUrlProduction.replace("{nickname_placeholder}", URLEncoder.encode(loginResponse.getNickname(), "UTF-8"));
+        response.sendRedirect(loginPageUrl);
     }
 
     @PostMapping("/register")

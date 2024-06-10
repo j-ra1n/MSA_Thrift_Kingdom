@@ -15,7 +15,7 @@ public class BbServerApplication {
 
 	@GetMapping(value = "/")
 	public String doGetHelloWorld() {
-		return "Hello World";
+		return "Hello BB-server";
 	}
 
 	@GetMapping(value = "/demo")

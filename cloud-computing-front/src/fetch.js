@@ -1,10 +1,11 @@
 // fetch.js
-const BASE_URL = 'http://172.25.235.201';
+const BASE_URL = 'http://localhost:8090';
+//http://172.25.235.200:80
 
-const BB_BASE_URL = `http://172.25.235.202:8080/board`;
-const CM_BASE_URL = `http://172.25.235.203:8080/comment`;
-const SB_BASE_URL = `http://172.25.235.204:8080/item`;
-const Login_BASE_URL = `http://172.25.235.205:8080/auth`
+const BB_BASE_URL = `${BASE_URL}/board`;
+const CM_BASE_URL = `${BASE_URL}/comment`;
+const SB_BASE_URL = `${BASE_URL}/item`;
+const Login_BASE_URL = `${BASE_URL}/auth`
 
 
 

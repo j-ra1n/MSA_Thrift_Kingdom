@@ -20,7 +20,7 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async (platform) => {
     try {
-      const response = await fetch(`${Login_BASE_URL}/auth/loginPage?platform=${platform}`);
+      const response = await fetch(`${Login_BASE_URL}/loginPage?platform=${platform}`);
       const data = await response.json();
       if (data.resCode === 200) {
         const loginUrl = data.resObj;

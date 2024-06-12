@@ -20,7 +20,7 @@ const SharingBoard = () => {
   }, []);
 
   const fetchItems = () => {
-    fetch(SB_BASE_URL + '/item/list')
+    fetch(SB_BASE_URL + '/list')
       .then(response => response.json())
       .then(data => setItems(data.content))
       .catch(error => console.error('아이템을 불러오는 중 에러 발생:', error));
@@ -33,7 +33,7 @@ const SharingBoard = () => {
   const handleCreateItem = () => {
     const newItem = { productName, price, nickname: user.nickname, url };
 
-    fetch(SB_BASE_URL + '/item/', {
+    fetch(SB_BASE_URL + '/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ const SharingBoard = () => {
   };
 
   const handleItemClick = (itemId) => {
-    navigate(`/item/${itemId}`);
+    navigate(`/${itemId}`);
   };
 
   const handlePreviousPage = () => {

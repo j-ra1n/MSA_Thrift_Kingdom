@@ -19,7 +19,7 @@ const ItemDetail = () => {
   }, [id]);
 
   const fetchItem = () => {
-    fetch(`${SB_BASE_URL}/item/${id}`)
+    fetch(`${SB_BASE_URL}/${id}`)
       .then(response => response.json())
       .then(data => {
         setItem(data);
@@ -33,7 +33,7 @@ const ItemDetail = () => {
   const handleUpdateItem = () => {
     const updatedItem = { ...item, productName, price, url };
 
-    fetch(`${SB_BASE_URL}/item/${id}`, {
+    fetch(`${SB_BASE_URL}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const ItemDetail = () => {
 
   const handleDeleteItem = () => {
     if (window.confirm('게시물을 삭제하시겠습니까?')) {
-      fetch(`${SB_BASE_URL}/item/${id}`, {
+      fetch(`${SB_BASE_URL}/${id}`, {
         method: 'DELETE'
       })
         .then(response => {

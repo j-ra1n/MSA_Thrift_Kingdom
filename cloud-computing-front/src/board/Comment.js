@@ -19,7 +19,7 @@ const Comment = ({ boardId, isGuest }) => {
   }, []);
 
   const fetchComments = () => {
-    fetch(`${CM_BASE_URL}/comment/list/${boardId}`)
+    fetch(`${CM_BASE_URL}/list/${boardId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -97,7 +97,7 @@ const Comment = ({ boardId, isGuest }) => {
   const handleDeleteComment = (id) => {
     const confirmDelete = window.confirm('댓글을 삭제하시겠습니까?');
     if (confirmDelete) {
-      fetch(`${CM_BASE_URL}/comment/${id}`, {
+      fetch(`${CM_BASE_URL}/${id}`, {
         method: 'DELETE',
       })
       .then(response => {

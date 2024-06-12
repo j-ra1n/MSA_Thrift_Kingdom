@@ -15,36 +15,11 @@ public class BbServerApplication {
 
 	@GetMapping(value = "/")
 	public String doGetHelloWorld() {
-		return "Hello BB-server";
+		return "Hello World I'm bb-server";
 	}
 
 	@GetMapping(value = "/demo")
 	public String doGetHelloWorldDemo() {
 		return "Hello World (Demo)";
-	}
-
-	@GetMapping(value = "/webhook1")
-	public String testWebhook1() {
-		return "webhook";
-	}
-
-	@GetMapping(value = "/webhook3")
-	public String testWebhook3() {
-		return "webhook3";
-	}
-
-	@GetMapping(value = "/webhook4")
-	public String testWebhook4() {
-		return "webhook4";
-	}
-
-	@GetMapping(value = "/webhook5")
-	public String testWebhook5() {
-		return "webhook5";
-	}
-
-	@GetMapping(value = "/webhook6")
-	public String testWebhook6() {
-		return "webhook6";
 	}
 }

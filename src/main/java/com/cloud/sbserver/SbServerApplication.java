@@ -15,11 +15,6 @@ public class SbServerApplication {
 
 	@GetMapping(value = "/")
 	public String doGetHelloWorld() {
-		return "Hello World";
-	}
-
-	@GetMapping(value = "/jenkins")
-	public String testJenkins() {
-		return "Jenkins";
+		return "Hello World I'm sb-server";
 	}
 }

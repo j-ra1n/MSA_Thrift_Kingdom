@@ -1,10 +1,10 @@
 // fetch.js
-const BASE_URL = 'http://172.25.235.201'; // frontend 서비스의 외부 IP 주소
+const BASE_URL = 'http://172.25.235.201';
 
-const BB_BASE_URL = `${BASE_URL}/board`;
-const SB_BASE_URL = `${BASE_URL}/item`;
-const CM_BASE_URL = `${BASE_URL}/comment`;
-const Login_BASE_URL = `${BASE_URL}/auth`
+const BB_BASE_URL = `http://172.25.235.202:8080/board`;
+const CM_BASE_URL = `http://172.25.235.203:8080/comment`;
+const SB_BASE_URL = `http://172.25.235.204:8080/item`;
+const Login_BASE_URL = `http://172.25.235.205:8080/auth`
 
 
 

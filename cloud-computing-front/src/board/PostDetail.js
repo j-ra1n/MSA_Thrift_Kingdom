@@ -20,7 +20,7 @@ const PostDetail = ({ isGuest }) => {
   }, []);
 
   const fetchPost = () => {
-    fetch(`${BB_BASE_URL}/${id}`)
+    fetch(`${BB_BASE_URL}/board/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -50,7 +50,7 @@ const PostDetail = ({ isGuest }) => {
 
   const handleSaveEdit = () => {
     const updatedPost = { title, content };
-    fetch(`${BB_BASE_URL}/${id}`, {
+    fetch(`${BB_BASE_URL}/board/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const PostDetail = ({ isGuest }) => {
 
   const handleDelete = () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      fetch(`${BB_BASE_URL}/${id}`, {
+      fetch(`${BB_BASE_URL}/board/${id}`, {
         method: 'DELETE'
       })
         .then(response => {

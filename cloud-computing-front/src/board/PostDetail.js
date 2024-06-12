@@ -20,7 +20,7 @@ const PostDetail = ({ isGuest }) => {
   }, []);
 
   const fetchPost = () => {
-    fetch(`${BB_BASE_URL}/board/${id}`)
+    fetch(`${BB_BASE_URL}/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -50,7 +50,7 @@ const PostDetail = ({ isGuest }) => {
 
   const handleSaveEdit = () => {
     const updatedPost = { title, content };
-    fetch(`${BB_BASE_URL}/board/${id}`, {
+    fetch(`${BB_BASE_URL}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

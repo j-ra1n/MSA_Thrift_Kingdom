@@ -18,7 +18,7 @@ const BulletinBoard = ({ isGuest }) => {
   }, []);
 
   const fetchPosts = () => {
-    fetch(BB_BASE_URL + '/board/list')
+    fetch(BB_BASE_URL + '/list')
       .then(response => response.json())
       .then(data => setPosts(data.content))
       .catch(error => console.error('Error fetching posts:', error));
@@ -36,7 +36,7 @@ const BulletinBoard = ({ isGuest }) => {
 
     const newPost = { title, nickname: isAnonymous ? '익명' : user.nickname, content };
 
-    fetch(BB_BASE_URL + '/board/', {
+    fetch(BB_BASE_URL + '/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

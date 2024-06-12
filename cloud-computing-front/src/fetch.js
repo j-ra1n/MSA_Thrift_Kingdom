@@ -1,6 +1,6 @@
 // fetch.js
 // cluster ip 10.102.35.181
-const EXTERNAL_IP = 'http://192.168.59.204'; // istio-ingressgateway의 EXTERNAL-IP
+const EXTERNAL_IP = 'http://localhost:8091'; // istio-ingressgateway의 EXTERNAL-IP
 
 const BB_BASE_URL = `${EXTERNAL_IP}/bb-server`;
 const SB_BASE_URL = `${EXTERNAL_IP}/sb-server`;

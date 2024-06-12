@@ -15,16 +15,6 @@ public class CmServerApplication {
 
 	@GetMapping(value = "/")
 	public String doGetHelloWorld() {
-		return "Hello World";
-	}
-
-	@GetMapping(value = "/demo")
-	public String doGetHelloWorldDemo() {
-		return "Hello World (Demo)";
-	}
-
-	@GetMapping(value = "/jenkins")
-	public String testJenkins() {
-		return "jenkins";
+		return "Hello World I'm cm-server";
 	}
 }

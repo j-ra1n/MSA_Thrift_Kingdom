@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 public @interface ExternalClients {
 
     // ExternalClientsPostProcessor 클래스가 application.yml에서 환경변수를 못찾을 경우 사용할 baseUrl 디폴트 값 설정
-    String baseUrl() default "http://localhost:8081";
+    String baseUrl() default "http://localhost:8090";
 
     // HttpExchange의 accept 헤더 기본값 설정: APPLICATION_JSON_VALUE
     @AliasFor(annotation = HttpExchange.class, attribute = "accept")

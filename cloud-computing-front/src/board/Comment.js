@@ -62,7 +62,7 @@ const Comment = ({ boardId, isGuest }) => {
 
     const newComment = { content, nickname, boardId, userId: user.userId };
 
-    const url = editMode ? `${CM_BASE_URL}/comment/${editCommentId}` : `${CM_BASE_URL}/comment/${boardId}`;
+    const url = editMode ? `${CM_BASE_URL}/${editCommentId}` : `${CM_BASE_URL}/${boardId}`;
     const method = editMode ? 'PUT' : 'POST';
 
     fetch(url, {

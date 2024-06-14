@@ -1,6 +1,6 @@
 # 서버 포트 번호
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
@@ -9,6 +9,15 @@ spring:
     active: dev
   config:
     import: database.yml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 
 # 운영 환경 변수 설정

@@ -52,7 +52,7 @@ const SharingBoard = () => {
   };
 
   const handleItemClick = (itemId) => {
-    navigate(SB_BASE_URL + `/${itemId}`);
+    navigate(`/sharing/${itemId}`);
   };
 
   const handlePreviousPage = () => {

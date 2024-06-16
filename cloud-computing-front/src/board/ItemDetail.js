@@ -4,7 +4,10 @@ import { useUser } from '../context/UserContext';
 import './ItemDetail.css';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 
-const ItemDetail = ({ id, onClose }) => {
+const ItemDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useUser();
   const [item, setItem] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [productName, setProductName] = useState('');
@@ -54,7 +57,7 @@ const ItemDetail = ({ id, onClose }) => {
         console.log('Updated item:', data);
         setItem(data);
         setIsEditing(false);
-        onClose();
+        navigate('/sharing');
       })
       .catch(error => console.error('아이템을 수정하는 중 에러 발생:', error));
   };
@@ -71,10 +74,14 @@ const ItemDetail = ({ id, onClose }) => {
           return response.text();
         })
         .then(() => {
-          onClose();
+          navigate('/sharing');
         })
         .catch(error => console.error('아이템을 삭제하는 중 에러 발생:', error));
     }
+  };
+
+  const handleBackClick = () => {
+    navigate('/sharing');
   };
 
   const handleLinkClick = (e) => {
@@ -87,53 +94,51 @@ const ItemDetail = ({ id, onClose }) => {
   if (!item) return <div>Loading...</div>;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <button className="modal-close-button" onClick={onClose}>×</button>
-        <h2 className="modal-title">{item.productName}</h2>
-        <p>{item.price}원</p>
-        <p>
-          <a href={url && (url.startsWith('http') ? url : `http://${url}`)} onClick={handleLinkClick} style={{ color: '#4787e7' }}>
-            {url}
-          </a>
-        </p>
-        <div className="item-footer">
-          <span className="item-nickname">{item.nickname}</span>
-          <span className="item-date">{item.date}</span>
-        </div>
-        {user && item.nickname === user.nickname && (
-          <>
-            {!isEditing && (
-              <div className="edit-delete-buttons">
-                <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
-                <button className="delete-button" onClick={handleDeleteItem}>삭제</button>
-              </div>
-            )}
-            {isEditing && (
-              <>
-                <div className="form-group">
-                  <label>상품명</label>
-                  <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
-                </div>
-                <div className="form-group">
-                  <label>가격</label>
-                  <input
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    step="1000"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>링크</label>
-                  <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                </div>
-                <button className="modal-update-button" onClick={handleUpdateItem}>수정 완료</button>
-              </>
-            )}
-          </>
-        )}
+    <div className="item-detail-container">
+      <button className="back-button" onClick={handleBackClick}>←</button>
+      <h2 className="item-title">{item.productName}</h2>
+      <p>{item.price}원</p>
+      <p>
+        <a href={url && (url.startsWith('http') ? url : `http://${url}`)} onClick={handleLinkClick} style={{ color: '#4787e7' }}>
+          {url}
+        </a>
+      </p>
+      <div className="item-footer">
+        <span className="item-nickname">{item.nickname}</span>
+        <span className="item-date">{item.date}</span>
       </div>
+      {user && item.nickname === user.nickname && (
+        <>
+          {!isEditing && (
+            <div className="edit-delete-buttons">
+              <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
+              <button className="delete-button" onClick={handleDeleteItem}>삭제</button>
+            </div>
+          )}
+          {isEditing && (
+            <>
+              <div className="form-group">
+                <label>상품명</label>
+                <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label>가격</label>
+                <input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  step="1000"
+                />
+              </div>
+              <div className="form-group">
+                <label>링크</label>
+                <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+              </div>
+              <button className="modal-update-button" onClick={handleUpdateItem}>수정 완료</button>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 };

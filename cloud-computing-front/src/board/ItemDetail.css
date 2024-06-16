@@ -123,14 +123,3 @@ input {
   cursor: pointer;
   margin-top: 10px;
 }
-
-.modal-close-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #EAD4AA;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}

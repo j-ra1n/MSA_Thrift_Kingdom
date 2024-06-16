@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 import './SharingBoard.css';
+import ItemDetail from './ItemDetail'; // 추가된 부분
 
 const SharingBoard = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const SharingBoard = () => {
   const [url, setUrl] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedItemId, setSelectedItemId] = useState(null); // 추가된 부분
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const SharingBoard = () => {
   };
 
   const handleItemClick = (itemId) => {
-    navigate(`/sharing/${itemId}`);
+    setSelectedItemId(itemId);
   };
 
   const handlePreviousPage = () => {
@@ -124,6 +126,10 @@ const SharingBoard = () => {
             <button className="modal-create-button" onClick={handleCreateItem}>작성</button>
           </div>
         </div>
+      )}
+
+      {selectedItemId && (
+        <ItemDetail id={selectedItemId} onClose={() => setSelectedItemId(null)} />
       )}
     </div>
   );

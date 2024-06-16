@@ -20,7 +20,8 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async (platform) => {
     try {
-      const response = await fetch(`${Login_BASE_URL}/loginPage?platform=${platform}`);
+      //const response = await fetch(`${Login_BASE_URL}/loginPage?platform=${platform}`);
+      const response = await fetch(`${Login_BASE_URL}/doors?loggedIn=true&nickname=정우`);
       const text = await response.text(); // 응답을 텍스트로 읽기
       console.log("Response text:", text); // 응답 텍스트 출력
       const data = JSON.parse(text); // 텍스트를 JSON으로 파싱

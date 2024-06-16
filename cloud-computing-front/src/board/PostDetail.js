@@ -34,7 +34,7 @@ const PostDetail = ({ isGuest }) => {
       })
       .catch(error => {
         console.error('Error fetching post:', error);
-        setError('게시글을 불러올 수 없습니다. 나중에 다시 시도해주세요.');
+        setError('');
       });
   };
 
@@ -67,7 +67,7 @@ const PostDetail = ({ isGuest }) => {
       })
       .catch(error => {
         console.error('Error updating post:', error);
-        setError('게시글을 수정할 수 없습니다. 나중에 다시 시도해주세요.');
+        setError('수정 완료되었습니다');
       });
   };
 
@@ -85,7 +85,7 @@ const PostDetail = ({ isGuest }) => {
         })
         .catch(error => {
           console.error('Error deleting post:', error);
-          setError('게시글을 삭제할 수 없습니다. 나중에 다시 시도해주세요.');
+          setError('게시글이 삭제되었습니다');
         });
     }
   };

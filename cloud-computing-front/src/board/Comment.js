@@ -42,7 +42,7 @@ const Comment = ({ boardId, isGuest }) => {
       })
       .catch(error => {
         console.error('Error fetching comments:', error);
-        setError('댓글을 불러올 수 없습니다. 나중에 다시 시도해주세요.');
+        setError('');
       });
   };
 

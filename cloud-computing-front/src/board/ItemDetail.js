@@ -30,7 +30,7 @@ const ItemDetail = ({ item, onClose }) => {
         setIsEditing(false);
         onClose();
       })
-      .catch(error => console.error('아이템을 수정하는 중 에러 발생:', error));
+      .catch(error => console.error('', error));
   };
 
   const handleDeleteItem = () => {
@@ -47,7 +47,7 @@ const ItemDetail = ({ item, onClose }) => {
         .then(() => {
           onClose();
         })
-        .catch(error => console.error('아이템을 삭제하는 중 에러 발생:', error));
+        .catch(error => console.error('', error));
     }
   };
 

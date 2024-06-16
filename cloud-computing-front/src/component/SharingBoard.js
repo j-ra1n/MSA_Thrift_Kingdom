@@ -12,7 +12,8 @@ const SharingBoard = () => {
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
   const [url, setUrl] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false); // 글 작성 모달 상태
+  const [showDetailModal, setShowDetailModal] = useState(false); // 상세 모달 상태
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedItem, setSelectedItem] = useState(null); // 선택된 아이템 상태 추가
   const itemsPerPage = 6;
@@ -45,7 +46,7 @@ const SharingBoard = () => {
       .then(response => response.json())
       .then(() => {
         fetchItems();
-        setShowModal(false);
+        setShowCreateModal(false);
         setProductName('');
         setPrice('');
         setUrl('');
@@ -55,7 +56,7 @@ const SharingBoard = () => {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    setShowModal(true); // 모달을 열고 아이템을 설정
+    setShowDetailModal(true); // 상세 모달을 열고 아이템을 설정
   };
 
   const handlePreviousPage = () => {
@@ -73,7 +74,7 @@ const SharingBoard = () => {
       <button className="back-button" onClick={handleBackClick}>←</button>
       <h1 className="board-title">공유의 방</h1>
       {user && user.nickname !== 'Guest' && (
-        <button className="create-button" onClick={() => setShowModal(true)}>글 작성</button>
+        <button className="create-button" onClick={() => setShowCreateModal(true)}>글 작성</button>
       )}
       <div className="items-container">
         {currentItems.map((item, index) => (
@@ -102,36 +103,39 @@ const SharingBoard = () => {
         </div>
       </div>
 
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <button className="modal-back-button" onClick={() => setShowModal(false)}>←</button>
-            <h2 className="modal-title">최저가 상품 공유하기</h2>
-            <div className="form-group">
-              <label>상품명</label>
-              <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
+      {showCreateModal && (
+        <div className="create-modal-overlay">
+          <div className="create-modal">
+            <button className="create-modal-back-button" onClick={() => setShowCreateModal(false)}>←</button>
+            <h2 className="create-modal-title">최저가 상품 공유하기</h2>
+            <div className="create-form-group">
+              <label className="create-label">상품명</label>
+              <input className="create-input" type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
             </div>
-            <div className="form-group">
-              <label>가격</label>
+            <div className="create-form-group">
+              <label className="create-label">가격</label>
               <input
+                className="create-input"
                 type="number"
                 value={price}
                 onChange={(e) => setPrice(Math.floor(e.target.value / 1000) * 1000)}
                 step="1000"
               />
             </div>
-            <div className="form-group">
-              <label>위치 또는 링크</label>
-              <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+            <div className="create-form-group">
+              <label className="create-label">위치 또는 링크</label>
+              <input className="create-input" type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
             </div>
-            <button className="modal-create-button" onClick={handleCreateItem}>작성</button>
+            <button className="create-modal-create-button" onClick={handleCreateItem}>작성</button>
           </div>
         </div>
       )}
 
-      {selectedItem && (
-        <div className="modal-overlay">
-          <ItemDetail item={selectedItem} onClose={() => setShowModal(false)} />
+      {showDetailModal && selectedItem && (
+        <div className="detail-modal-overlay">
+          <div className="detail-modal">
+            <ItemDetail item={selectedItem} onClose={() => setShowDetailModal(false)} />
+          </div>
         </div>
       )}
     </div>

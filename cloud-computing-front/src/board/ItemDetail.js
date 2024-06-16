@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 import './ItemDetail.css';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
@@ -60,7 +60,7 @@ const ItemDetail = ({ item, onClose }) => {
 
   return (
     <div className="item-detail-container">
-      <button className="back-button" onClick={onClose}>←</button>
+      <button className="detail-back-button" onClick={onClose}>←</button>
       {isEditing ? (
         <>
           <div className="form-group">

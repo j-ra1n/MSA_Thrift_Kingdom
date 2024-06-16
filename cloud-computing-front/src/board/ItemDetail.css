@@ -1,16 +1,17 @@
+/* ItemDetail.css */
 .item-detail-container {
   padding: 20px;
   text-align: center;
   background-color: #3b2424;
   color: #EAD4AA;
   border-radius: 20px;
-  width: 80%; /* 여기서 80%를 60%로 변경 */
+  width: 80%;
   margin: auto;
   margin-top: 50px;
   position: relative;
 }
 
-.back-button {
+.detail-back-button {
   background: none;
   border: none;
   font-size: 24px;
@@ -77,7 +78,7 @@ input {
   margin-top: 20px;
 }
 
-.modal-overlay {
+.detail-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -89,7 +90,7 @@ input {
   align-items: center;
 }
 
-.modal {
+.detail-modal {
   background: #3b2424;
   color: #EAD4AA;
   padding: 20px;

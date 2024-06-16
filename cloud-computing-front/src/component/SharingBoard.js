@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 import './SharingBoard.css';
-import ItemDetail from './ItemDetail'; // ItemDetail 컴포넌트 가져오기
+import ItemDetail from '../board/ItemDetail.js'; // ItemDetail 컴포넌트 가져오기
 
 const SharingBoard = () => {
   const navigate = useNavigate();

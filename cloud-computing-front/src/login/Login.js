@@ -24,8 +24,41 @@ const Login = ({ onLogin }) => {
     onLogin(false); // 로그인 상태를 업데이트합니다.
   };
 
-  const handleKakaoLogin = () => handleFakeLogin();
-  const handleGoogleLogin = () => handleFakeLogin();
+  const handleLoginRedirect = async () => {
+    try {
+      const response = await fetch(`${Login_BASE_URL}/auth/regis`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nickname: 'jw' }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setUser({ nickname: result.data });
+        setTimeout(() => {
+          // 여기에 회원가입 후 리디렉션할 URL을 설정하세요.
+          window.location.href = `http://172.25.235.160:31685/doors?loggedIn=true&nickname=jw`;
+        }, 2000);
+      } else {
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error during registration', error);
+    }
+  };
+
+  const handleKakaoLogin = () => {
+    handleFakeLogin();
+    handleLoginRedirect();
+  };
+
+  const handleGoogleLogin = () => {
+    handleFakeLogin();
+    handleLoginRedirect();
+  };
+
   const handleGuestLogin = () => {
     onLogin(true);
     setUser({ nickname: 'Guest' });

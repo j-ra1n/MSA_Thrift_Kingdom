@@ -4,7 +4,7 @@ import beggarImage from '../images/begger.png';
 import kakaoImage from '../images/kakao.png';
 import googleImage from '../images/google.png';
 import './Login.css';
-import { Login_BASE_URL } from '../fetch.js'; // 수정된 부분
+import { Login_BASE_URL } from '../fetch.js';
 
 const Login = ({ onLogin }) => {
   const { setUser } = useUser();
@@ -18,25 +18,14 @@ const Login = ({ onLogin }) => {
     }
   }, [setUser, onLogin]);
 
-  const handleLogin = async (platform) => {
-    try {
-      const response = await fetch(`${Login_BASE_URL}/loginPage?platform=${platform}`);
-      const text = await response.text(); // 응답을 텍스트로 읽기
-      console.log("Response text:", text); // 응답 텍스트 출력
-      const data = JSON.parse(text); // 텍스트를 JSON으로 파싱
-      if (data.resCode === 200) {
-        const loginUrl = data.resObj;
-        window.location.href = loginUrl;
-      } else {
-        console.error(`Failed to get login URL for platform ${platform}: ${data.resMsg}`);
-      }
-    } catch (error) {
-      console.error('Error fetching login URL:', error);
-    }
+  const handleFakeLogin = () => {
+    // 하드코딩된 유저로 로그인
+    setUser({ nickname: 'jw' });
+    onLogin(false); // 로그인 상태를 업데이트합니다.
   };
 
-  const handleKakaoLogin = () => handleLogin('KAKAO');
-  const handleGoogleLogin = () => handleLogin('GOOGLE');
+  const handleKakaoLogin = () => handleFakeLogin();
+  const handleGoogleLogin = () => handleFakeLogin();
   const handleGuestLogin = () => {
     onLogin(true);
     setUser({ nickname: 'Guest' });

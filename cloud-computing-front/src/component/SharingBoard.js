@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 import './SharingBoard.css';
+import ItemDetail from './ItemDetail'; // ItemDetail 컴포넌트 가져오기
 
 const SharingBoard = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const SharingBoard = () => {
   const [url, setUrl] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(null); // 선택된 아이템 상태 추가
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -51,8 +53,9 @@ const SharingBoard = () => {
       .catch(error => console.error('아이템을 생성하는 중 에러 발생:', error));
   };
 
-  const handleItemClick = (itemId) => {
-    navigate(`/sharing/${itemId}`);
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setShowModal(true); // 모달을 열고 아이템을 설정
   };
 
   const handlePreviousPage = () => {
@@ -74,7 +77,7 @@ const SharingBoard = () => {
       )}
       <div className="items-container">
         {currentItems.map((item, index) => (
-          <div key={item.id} className="item-box" onClick={() => handleItemClick(item.id)}>
+          <div key={item.id} className="item-box" onClick={() => handleItemClick(item)}>
             <div className="item-header">
               <h2>{item.productName}</h2>
             </div>
@@ -123,6 +126,12 @@ const SharingBoard = () => {
             </div>
             <button className="modal-create-button" onClick={handleCreateItem}>작성</button>
           </div>
+        </div>
+      )}
+
+      {selectedItem && (
+        <div className="modal-overlay">
+          <ItemDetail item={selectedItem} onClose={() => setShowModal(false)} />
         </div>
       )}
     </div>

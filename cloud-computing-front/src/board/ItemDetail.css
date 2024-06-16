@@ -4,7 +4,7 @@
   background-color: #3b2424;
   color: #EAD4AA;
   border-radius: 20px;
-  width: 40%; /* 여기서 80%를 60%로 변경 */
+  width: 80%; /* 여기서 80%를 60%로 변경 */
   margin: auto;
   margin-top: 50px;
   position: relative;
@@ -100,26 +100,4 @@ input {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-}
-
-.modal-delete-button {
-  background-color: #FF6B6B;
-  border: none;
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.modal-cancel-button {
-  background-color: #A9A9A9;
-  border: none;
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 10px;
 }

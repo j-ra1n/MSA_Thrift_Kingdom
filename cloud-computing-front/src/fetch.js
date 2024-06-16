@@ -1,5 +1,5 @@
 // fetch.js
-const BASE_URL = 'http://localhost:8090';
+const BASE_URL = 'http://172.25.235.200:80';
 //http://172.25.235.200:80
 
 const BB_BASE_URL = `${BASE_URL}/board`;

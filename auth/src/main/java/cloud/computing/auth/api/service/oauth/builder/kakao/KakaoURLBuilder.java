@@ -6,6 +6,7 @@ import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.config.oauth.OAuthProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class KakaoURLBuilder implements OAuthURLBuilder {
 
 
     // 속성에서 읽어온 객체를 주입
-    public KakaoURLBuilder(OAuthProperties oAuthProperties) {
+    public KakaoURLBuilder(@Qualifier("oauth2-cloud.computing.auth.config.oauth.OAuthProperties") OAuthProperties oAuthProperties) {
         try {
             // 플랫폼(kakao)의 client, provider Map 획득
             OAuthProperties.Client kakaoClient = oAuthProperties.getClient().get(PLATFORM);

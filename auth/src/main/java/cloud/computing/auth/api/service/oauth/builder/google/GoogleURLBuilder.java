@@ -5,6 +5,7 @@ import cloud.computing.auth.common.exception.ExceptionMessage;
 import cloud.computing.auth.common.exception.oauth.OAuthException;
 import cloud.computing.auth.config.oauth.OAuthProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -20,7 +21,7 @@ public class GoogleURLBuilder implements OAuthURLBuilder {
     private final String profileUri;
 
 
-    public GoogleURLBuilder(OAuthProperties oAuthProperties) {
+    public GoogleURLBuilder(@Qualifier("oauth2-cloud.computing.auth.config.oauth.OAuthProperties") OAuthProperties oAuthProperties) {
         try {
             // 플랫폼(google)의 client, provider Map 획득
             OAuthProperties.Client googleClient = oAuthProperties.getClient().get(PLATFORM);
@@ -70,4 +71,3 @@ public class GoogleURLBuilder implements OAuthURLBuilder {
         return profileUri;
     }
 }
-

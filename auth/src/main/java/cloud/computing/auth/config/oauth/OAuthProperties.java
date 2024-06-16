@@ -14,6 +14,8 @@ import java.util.Map;
  * Clients, Provider 2개의 Map으로 바인딩
  */
 @Getter
+@Primary
+@Component
 @ConfigurationProperties(prefix = "oauth2")
 public class OAuthProperties {
     private final Map<String, Client> client = new HashMap<>();

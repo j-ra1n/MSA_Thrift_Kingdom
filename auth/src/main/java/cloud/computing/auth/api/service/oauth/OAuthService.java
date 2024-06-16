@@ -100,12 +100,12 @@ public class OAuthService {
 
         if (platform.equalsIgnoreCase("KAKAO")) {
             clientId = "c8ab98649fa0923d7fef54b5d6964693";
-            redirectUri = "http://localhost:8090/auth/KAKAO/login";
+            redirectUri = "http://172.25.235.160:31685/auth/KAKAO/login";
             authorizationUri = "https://kauth.kakao.com/oauth/authorize";
             scope = "openid";
         } else if (platform.equalsIgnoreCase("GOOGLE")) {
             clientId = "880451833113-tekouofuue60vnf918s9v22m44aiopct.apps.googleusercontent.com";
-            redirectUri = "http://localhost:8090/auth/GOOGLE/login";
+            redirectUri = "http://172.25.235.160:31685/auth/GOOGLE/login";
             authorizationUri = "https://accounts.google.com/o/oauth2/v2/auth";
             scope = "email profile";
         } else {

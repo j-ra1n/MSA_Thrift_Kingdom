@@ -26,7 +26,7 @@ const Login = ({ onLogin }) => {
 
   const handleLoginRedirect = async () => {
     try {
-      const response = await fetch(`${Login_BASE_URL}/auth/regis`, {
+      const response = await fetch(`${Login_BASE_URL}/regis`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

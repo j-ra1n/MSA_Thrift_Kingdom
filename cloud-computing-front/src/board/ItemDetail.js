@@ -15,13 +15,20 @@ const ItemDetail = () => {
   const [url, setUrl] = useState('');
 
   useEffect(() => {
+    console.log(`Fetching item with id: ${id}`);
     fetchItem();
   }, [id]);
 
   const fetchItem = () => {
     fetch(`${SB_BASE_URL}/${id}`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
+        console.log('Fetched item:', data);
         setItem(data);
         setProductName(data.productName);
         setPrice(data.price);
@@ -44,17 +51,13 @@ const ItemDetail = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.text();  // JSON이 아닐 경우 텍스트로 받음
+        return response.json();
       })
-      .then(text => {
-        try {
-          const json = JSON.parse(text); // JSON 파싱 시도
-          setItem(json);
-        } catch (error) {
-          console.warn('Response is not JSON:', text);
-        }
+      .then(data => {
+        console.log('Updated item:', data);
+        setItem(data);
         setIsEditing(false);
-        navigate('/sharing'); // 수정 완료 후 공유의 방 화면으로 전환
+        navigate('/sharing');
       })
       .catch(error => console.error('아이템을 수정하는 중 에러 발생:', error));
   };
@@ -71,7 +74,7 @@ const ItemDetail = () => {
           return response.text();
         })
         .then(() => {
-          navigate('/sharing'); // 삭제 완료 후 공유의 방 화면으로 전환
+          navigate('/sharing');
         })
         .catch(error => console.error('아이템을 삭제하는 중 에러 발생:', error));
     }

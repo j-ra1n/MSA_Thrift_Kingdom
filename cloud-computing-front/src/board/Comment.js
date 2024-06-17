@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useUser } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';  // 추가된 부분
 import './Comment.css';
 import { CM_BASE_URL } from '../fetch.js'; // 수정된 부분
 
@@ -13,6 +14,7 @@ const Comment = ({ boardId, isGuest }) => {
   const [editCommentId, setEditCommentId] = useState(null);
   const anonymousMap = useRef(new Map());  // 사용자별 익명 번호를 저장할 맵
   const anonymousCounter = useRef(1);  // 익명 번호를 증가시킬 카운터
+  const navigate = useNavigate();  // 추가된 부분
 
   useEffect(() => {
     fetchComments();
@@ -105,7 +107,7 @@ const Comment = ({ boardId, isGuest }) => {
           throw new Error('Network response was not ok');
         }
         alert('게시글이 삭제되었습니다');
-          navigate('/bulletin');
+        navigate('/bulletin');
       })
       .then(() => {
         alert('게시글이 삭제되었습니다');

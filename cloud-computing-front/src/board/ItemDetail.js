@@ -30,8 +30,9 @@ const ItemDetail = ({ item, onClose }) => {
       })
       .then(data => {
         setIsEditing(false);
+        alert('수정 완료되었습니다');
+        navigate('/bulletin');
         onClose();
-        navigate('/bulltin')
       })
       .catch(error => console.error('', error));
   };
@@ -48,8 +49,9 @@ const ItemDetail = ({ item, onClose }) => {
           return response.text();
         })
         .then(() => {
+          alert('게시글이 삭제되었습니다');
+          navigate('/bulletin');
           onClose();
-          navigate('/bulltin')
         })
         .catch(error => console.error('', error));
     }

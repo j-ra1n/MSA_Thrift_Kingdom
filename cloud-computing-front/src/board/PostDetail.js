@@ -62,7 +62,10 @@ const PostDetail = ({ isGuest }) => {
           throw new Error('Network response was not ok');
         }
         setIsEditing(false);
+        const currentPath = window.location.pathname;
         alert('수정 완료되었습니다');
+        navigate('/bulletin');
+        navigate(currentPath);
       })
       .catch(error => {
         alert('수정 완료되었습니다');
@@ -72,7 +75,7 @@ const PostDetail = ({ isGuest }) => {
 
   const handleDelete = () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      fetch(`${BB_BASE_URL}/board/${id}`, {
+      fetch(`${BB_BASE_URL}/${id}`, {
         method: 'DELETE'
       })
         .then(response => {

@@ -108,7 +108,10 @@ const Comment = ({ boardId, isGuest }) => {
         }
       })
       .then(() => {
+        const currentPath = window.location.pathname;
         alert('게시글이 삭제되었습니다');
+        navigate('/bulletin');
+        navigate(currentPath);
       })
       .catch(error => console.error('Error deleting comment:', error));
     }

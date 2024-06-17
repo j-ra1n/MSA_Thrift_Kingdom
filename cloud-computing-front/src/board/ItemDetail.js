@@ -29,6 +29,7 @@ const ItemDetail = ({ item, onClose }) => {
       .then(data => {
         setIsEditing(false);
         onClose();
+        navigate('/sharing')
       })
       .catch(error => console.error('', error));
   };
@@ -46,6 +47,7 @@ const ItemDetail = ({ item, onClose }) => {
         })
         .then(() => {
           onClose();
+          navigate('/sharing')
         })
         .catch(error => console.error('', error));
     }

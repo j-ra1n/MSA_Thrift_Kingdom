@@ -106,12 +106,9 @@ const Comment = ({ boardId, isGuest }) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        alert('게시글이 삭제되었습니다');
-        navigate('/bulletin');
       })
       .then(() => {
         alert('게시글이 삭제되었습니다');
-        navigate('/bulletin');
       })
       .catch(error => console.error('Error deleting comment:', error));
     }

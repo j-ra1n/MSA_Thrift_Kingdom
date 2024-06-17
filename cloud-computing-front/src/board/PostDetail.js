@@ -63,7 +63,6 @@ const PostDetail = ({ isGuest }) => {
         }
         setIsEditing(false);
         alert('수정 완료되었습니다');
-        navigate('/bulletin');
       })
       .catch(error => {
         alert('수정 완료되었습니다');

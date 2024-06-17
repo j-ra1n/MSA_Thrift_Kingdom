@@ -62,10 +62,8 @@ const PostDetail = ({ isGuest }) => {
           throw new Error('Network response was not ok');
         }
         setIsEditing(false);
-        const currentPath = window.location.pathname;
         alert('수정 완료되었습니다');
         navigate('/bulletin');
-        navigate(currentPath);
       })
       .catch(error => {
         alert('수정 완료되었습니다');

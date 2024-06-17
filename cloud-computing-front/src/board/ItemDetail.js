@@ -31,7 +31,7 @@ const ItemDetail = ({ item, onClose }) => {
       .then(data => {
         setIsEditing(false);
         onClose();
-        navigate('/sharing')
+        navigate('/bulltin')
       })
       .catch(error => console.error('', error));
   };
@@ -49,7 +49,7 @@ const ItemDetail = ({ item, onClose }) => {
         })
         .then(() => {
           onClose();
-          navigate('/sharing')
+          navigate('/bulltin')
         })
         .catch(error => console.error('', error));
     }

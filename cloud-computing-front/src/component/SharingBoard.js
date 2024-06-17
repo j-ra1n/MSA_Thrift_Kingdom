@@ -45,7 +45,6 @@ const SharingBoard = () => {
     })
       .then(response => response.json())
       .then(() => {
-        fetchItems();
         setShowCreateModal(false);
         setProductName('');
         setPrice('');

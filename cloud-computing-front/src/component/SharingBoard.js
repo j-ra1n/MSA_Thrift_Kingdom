@@ -50,7 +50,7 @@ const SharingBoard = () => {
         setProductName('');
         setPrice('');
         setUrl('');
-        navigate('/sharing');
+        fetchItems();
       })
       .catch(error => console.error('', error));
   };

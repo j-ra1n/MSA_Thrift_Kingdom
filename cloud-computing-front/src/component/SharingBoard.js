@@ -36,6 +36,7 @@ const SharingBoard = () => {
   const handleCreateItem = () => {
     const newItem = { productName, price, nickname: user.nickname, url };
 
+    if (window.confirm('게시물을 작성하시겠습니까?')) {
     fetch(SB_BASE_URL + '/', {
       method: 'POST',
       headers: {
@@ -53,6 +54,7 @@ const SharingBoard = () => {
         navigate('/bulletin');
       })
       .catch(error => console.error('', error));
+    }
   };
 
   const handleItemClick = (item) => {

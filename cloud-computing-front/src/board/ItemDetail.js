@@ -14,7 +14,7 @@ const ItemDetail = ({ item, onClose }) => {
 
   const handleUpdateItem = () => {
     const updatedItem = { ...item, productName, price, url };
-
+    if (window.confirm('게시물을 수정하시겠습니까?')) {
     fetch(`${SB_BASE_URL}/${item.id}`, {
       method: 'PUT',
       headers: {
@@ -33,6 +33,7 @@ const ItemDetail = ({ item, onClose }) => {
         navigate('/bulletin');
       })
       .catch(error => console.error('', error));
+    }
   };
 
   const handleDeleteItem = () => {

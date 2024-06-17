@@ -17,4 +17,9 @@ public class SbServerApplication {
 	public String doGetHelloWorld() {
 		return "Hello World I'm sb-server";
 	}
+
+	@GetMapping(value = "/test")
+	public String test() {
+		return "sb-server update test";
+	}
 }

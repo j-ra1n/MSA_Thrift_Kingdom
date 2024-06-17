@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
+import { useParams, useNavigate } from 'react-router-dom';
 import './ItemDetail.css';
 import { SB_BASE_URL } from '../fetch.js'; // 수정된 부분
 
 const ItemDetail = ({ item, onClose }) => {
   const { user } = useUser();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [productName, setProductName] = useState(item.productName);
   const [price, setPrice] = useState(item.price);

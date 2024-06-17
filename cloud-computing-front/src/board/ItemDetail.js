@@ -26,7 +26,7 @@ const ItemDetail = ({ item, onClose }) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
+        return response.text();
       })
       .then(data => {
         alert('수정 완료되었습니다');

@@ -106,6 +106,7 @@ const Comment = ({ boardId, isGuest }) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        return response.text();
       })
       .then(() => {
         const currentPath = window.location.pathname;

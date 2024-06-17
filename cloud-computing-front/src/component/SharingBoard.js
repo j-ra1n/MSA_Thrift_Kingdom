@@ -44,7 +44,7 @@ const SharingBoard = () => {
       },
       body: JSON.stringify(newItem)
     })
-      .then(response => response.json())
+      .then(response => response.text())
       .then(() => {
         setShowCreateModal(false);
         setProductName('');

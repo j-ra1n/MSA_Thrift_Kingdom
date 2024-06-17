@@ -24,7 +24,7 @@ const Login = ({ onLogin }) => {
     onLogin(false); // 로그인 상태를 업데이트합니다.
   };
 
-  const handleLoginRedirect = async (url) => {
+  const handleLoginRedirect = async (url, redirectUrl) => {
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -38,8 +38,8 @@ const Login = ({ onLogin }) => {
         const result = await response.json();
         setUser({ nickname: result.data });
         setTimeout(() => {
-          // 여기에 회원가입 후 리디렉션할 URL을 설정하세요.
-          window.location.href = `http://172.25.235.160:31685/doors?loggedIn=true&nickname=jw`;
+          // 회원가입 후 리디렉션할 URL을 설정하세요.
+          window.location.href = redirectUrl;
         }, 2000);
       } else {
         console.error('Registration failed');
@@ -56,7 +56,7 @@ const Login = ({ onLogin }) => {
 
   const handleGoogleLogin = () => {
     handleFakeLogin();
-    handleLoginRedirect(`${Login_BASE_URL}/regis`);
+    handleLoginRedirect(`${Login_BASE_URL}/regis`, `http://172.25.235.160:31685/doors?loggedIn=true&nickname=jw`);
   };
 
   const handleGuestLogin = () => {

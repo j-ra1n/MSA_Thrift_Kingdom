@@ -66,8 +66,8 @@ const PostDetail = ({ isGuest }) => {
         navigate('/bulletin');
       })
       .catch(error => {
-        console.error('Error updating post:', error);
-        setError('수정 완료되었습니다');
+        alert('수정 완료되었습니다');
+        navigate('/bulletin');
       });
   };
 
@@ -84,8 +84,8 @@ const PostDetail = ({ isGuest }) => {
           navigate('/bulletin');
         })
         .catch(error => {
-          console.error('Error deleting post:', error);
-          setError('게시글이 삭제되었습니다');
+          alert('게시글이 삭제되었습니다');
+          navigate('/bulletin');
         });
     }
   };

@@ -24,9 +24,9 @@ const Login = ({ onLogin }) => {
     onLogin(false); // 로그인 상태를 업데이트합니다.
   };
 
-  const handleLoginRedirect = async () => {
+  const handleLoginRedirect = async (url) => {
     try {
-      const response = await fetch(`${Login_BASE_URL}/regis`, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,12 +51,12 @@ const Login = ({ onLogin }) => {
 
   const handleKakaoLogin = () => {
     handleFakeLogin();
-    handleLoginRedirect();
+    handleLoginRedirect(`${Login_BASE_URL}/loginPage?platform=KAKAO`);
   };
 
   const handleGoogleLogin = () => {
     handleFakeLogin();
-    handleLoginRedirect();
+    handleLoginRedirect(`${Login_BASE_URL}/regis`);
   };
 
   const handleGuestLogin = () => {

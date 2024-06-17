@@ -26,7 +26,7 @@ const SharingBoard = () => {
     fetch(SB_BASE_URL + '/list')
       .then(response => response.json())
       .then(data => setItems(data.content))
-      .catch(error => console.error('아이템을 불러오는 중 에러 발생:', error));
+      .catch(error => console.error('', error));
   };
 
   const handleBackClick = () => {
@@ -51,7 +51,7 @@ const SharingBoard = () => {
         setPrice('');
         setUrl('');
       })
-      .catch(error => console.error('아이템을 생성하는 중 에러 발생:', error));
+      .catch(error => console.error('', error));
   };
 
   const handleItemClick = (item) => {

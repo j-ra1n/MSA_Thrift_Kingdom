@@ -18,7 +18,7 @@ public class SbServerApplication {
 		return "Hello World I'm sb-server";
 	}
 
-	@GetMapping(value = "/test")
+	@GetMapping(value = "/cors")
 	public String test() {
 		return "sb-server update test";
 	}

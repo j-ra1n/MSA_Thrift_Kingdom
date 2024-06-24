@@ -58,7 +58,7 @@
 
     <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
    
-    ![image](https://github.com/j-ra1n/MSA_Thrift_Kingdom/assets/118893707/7af6515a-eddd-428d-a0c8-adb386277e16)
+    ![image](https://github.com/j-ra1n/MSA_Thrift_Kingdom/assets/118893707/19cda09f-9d92-4861-8622-dbfae02505ac)
 
 
 

@@ -1,0 +1,138 @@
+.post-detail-container {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  height: calc(100vh - 80px); /* 상하 여백을 고려하여 높이 조정 */
+  padding: 40px 20px; /* 상하좌우 여백 추가 */
+  box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
+  position: relative; /* 상대 위치 지정 */
+}
+
+.post-detail-content {
+  width: 40%; /* 너비 조정 */
+  margin: 0 10px; /* 좌우 여백 추가 */
+  padding: 20px; /* 패딩을 크게 설정 */
+  overflow-y: auto; /* 세로 스크롤 허용 */
+  overflow-x: hidden; /* 가로 스크롤 숨기기 */
+  background-color: #3b2424; /* 배경색 변경 */
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  position: relative; /* 절대 위치를 위한 상대 위치 지정 */
+}
+
+.form-group textarea {
+  width: 100%;
+  height: auto;  /* 내용에 따라 높이가 자동으로 조절됩니다 */
+  min-height: 500px;  /* 최소 높이를 500픽셀로 설정 */
+  padding: 10px;
+  border: 1px solid #EAD4AA;
+  border-radius: 5px;
+  background-color: #3b2424;
+  color: #EAD4AA;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 20px; /* 크기를 줄임 */
+  color: #d6bfbf; /* 잘 보이도록 색상 변경 */
+  cursor: pointer;
+  position: absolute; /* 절대 위치 지정 */
+  top: 0; /* 작성자 위쪽으로 위치 조정 */
+  left: 20px; /* 위치 조정 */
+  z-index: 10; /* 다른 요소보다 앞에 보이도록 설정 */
+}
+
+.back-button:hover {
+  color: #d1c0c0; /* 호버 시 색상 변경 */
+}
+
+.post-title {
+  font-size: 24px; /* 크기를 줄임 */
+  margin: 10px 0; /* 마진을 줄임 */
+  text-align: center;
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* 마진을 줄임 */
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+.post-divider {
+  margin: 10px 0; /* 마진을 줄임 */
+  border-color: #EAD4AA; /* 구분선 색상 변경 */
+}
+
+.post-content {
+  white-space: pre-wrap;
+  color: #EAD4AA; /* 텍스트 색상 변경 */
+}
+
+.edit-button, .save-button {
+  background-color: #a06c6c; /* 수정 및 저장 버튼은 동일한 스타일 유지 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px; /* 수정 버튼 오른쪽에 공간 추가 */
+}
+
+.cancel-button {
+  background-color: #a06c6c; /* 취소 버튼은 빨간색 배경으로 변경 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.edit-button:hover, .save-button:hover {
+  background-color: #365474; /* 수정 및 저장 버튼 호버 색상 변경 */
+}
+
+.cancel-button:hover {
+  background-color: #b33a3a; /* 취소 버튼 호버 색상 변경 */
+}
+
+.delete-button {
+  background-color: #640505; /* 삭제 버튼은 더 어두운 빨간색으로 설정 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.delete-button:hover {
+  background-color: #b43636; /* 호버 시 밝은 빨간색으로 변경 */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #EAD4AA;
+  border-radius: 5px;
+  background-color: #3b2424;
+  color: #EAD4AA;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* 좌우 끝으로 정렬 */
+  align-items: center;
+  margin-top: 10px; /* 추가적인 상단 마진 제공 */
+}

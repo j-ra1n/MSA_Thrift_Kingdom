@@ -1,0 +1,83 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #3b2424;
+}
+
+.login-box {
+  background-color: #826861;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  width: 300px;
+}
+
+.login-box h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.login-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.login-box h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.login-button img {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.kakao {
+  background-color: #ffeb00;
+  color: #3c1e1e;
+}
+
+.kakao:hover {
+  background-color: #e0d500; /* 호버 시 색상 변경 */
+  color: #3c1e1e; /* 호버 시 글자색 유지 */
+}
+
+.google {
+  background-color: #ffffff;
+  color: #3c1e1e;
+  border: 1px solid #ccc;
+}
+
+.google:hover {
+  background-color: #e6e6e6; /* 호버 시 색상 변경 */
+  color: #3c1e1e; /* 호버 시 글자색 유지 */
+}
+
+.guest {
+  background-color: #4e4e4e;
+  color: #fff;
+}
+
+.guest:hover {
+  background-color: #3c3c3c; /* 호버 시 색상 변경 */
+  color: #fff; /* 호버 시 글자색 유지 */
+}

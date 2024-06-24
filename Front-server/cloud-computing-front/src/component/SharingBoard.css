@@ -1,0 +1,208 @@
+/* SharingBoard.css */
+.board-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #3b2424;
+  color: #EAD4AA;
+  border-radius: 20px;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #EAD4AA;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.board-title {
+  font-size: 36px;
+  margin: 20px 0;
+  color: #EAD4AA;
+}
+
+.create-button {
+  background-color: #705a5a;
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item-box {
+  background-color: #5c3a3a;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+  color: #EAD4AA;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex: 0 0 30%; /* 한 행에 3개 아이템 표시 */
+  cursor: pointer; /* 클릭 가능한 커서로 변경 */
+}
+
+.item-box h2 {
+  margin-top: 0;
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination-buttons button {
+  background-color: #705a5a;
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.door-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.door {
+  cursor: pointer;
+  text-align: center;
+}
+
+.door-image {
+  width: 100px;
+  height: 150px;
+  background-size: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.bulletin {
+  background-image: url('../images/doorb.png');
+}
+
+.sharing {
+  background-image: url('../images/doorb.png');
+}
+
+.door-name {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #826861;
+  transition: color 0.3s ease;
+}
+
+.door:hover .door-name {
+  color: white;
+}
+
+.door:hover .door-image {
+  transform: scale(1.1);
+}
+
+.create-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-modal {
+  background: #3b2424;
+  color: #EAD4AA;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.create-modal-back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #EAD4AA;
+  cursor: pointer;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.create-modal-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #EAD4AA;
+}
+
+.create-form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.create-label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #EAD4AA;
+}
+
+.create-input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #EAD4AA;
+  color: #2E2A2A;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.create-textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #EAD4AA;
+  color: #2E2A2A;
+  font-size: 16px;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.create-modal-create-button {
+  background-color: #a06c6c;
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}

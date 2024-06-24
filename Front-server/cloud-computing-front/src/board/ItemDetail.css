@@ -1,0 +1,111 @@
+.item-detail-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #3b2424;
+  color: #EAD4AA;
+  border-radius: 20px;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+}
+
+.detail-back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #EAD4AA;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.item-title {
+  font-size: 36px;
+  margin: 20px 0;
+  color: #EAD4AA;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.edit-button, .delete-button {
+  background-color: #a06c6c;
+  border: none;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #EAD4AA;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #EAD4AA;
+  color: #2E2A2A;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.modal-update-button {
+  background-color: #9e6d6d;
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.detail-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-modal {
+  background: #3b2424;
+  color: #EAD4AA;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.item-detail-container a {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

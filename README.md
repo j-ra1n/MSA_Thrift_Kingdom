@@ -105,7 +105,7 @@
     - 초당 500명이 동시 접속했을 때의 성능 테스트 결과이다. 
 
     </details>
-    <br></br
+    <br></br>
 
 
 
@@ -124,14 +124,14 @@
 
 5. 최저가 공유 서버 (Sharing Board- server : sb-server)
 
-
+<br></br>
 
 ## Service Mesh
 ![2](https://github.com/rndudals/MSA_Project/assets/102203336/5a8390f2-6f1b-4edd-a76f-1119ed963d04)
 
 각 서비스가 데이터베이스와 연결되어 있으며, istio-ingressgateway를 통해 외부 트래픽이 내부 서비스로 라우팅된다. 
 
-
+<br></br>
 
 
 ## 프로젝트 기능

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: bb-server
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://172.25.235.177:3306/board?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8080

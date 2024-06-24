@@ -1,0 +1,31 @@
+# 서버 포트 번호
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth
+  profiles:
+    active: dev
+  config:
+    import: database.yml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
+# 운영 환경 변수 설정
+login:
+  page:
+    url:
+      production: "http://localhost:8090/doors?loggedIn=true&nickname={nickname_placeholder}"
+
+jwt:
+  secretKey: 400c79fff2ced1c397439d479774912ee57881be5fba928da182d312a610426dcfee1e82823e16ff708b47b5e0c40afdae6505cd68166692e62197f6a153a9b2
+

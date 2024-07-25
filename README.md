@@ -103,7 +103,7 @@
    ![제목 없음 (1)](https://github.com/j-ra1n/MSA_Thrift_Kingdom/assets/118893707/f66021c5-7e91-4b2e-9f16-cb9cc2e19250)
 
 
-    - 초당 500명이 동시 접속했을 때의 성능 테스트 결과이다. 
+    - 초당 500명이 동시 접속할 때의 성능 테스트 결과이다. 
 
     </details>
     <br></br>

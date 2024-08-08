@@ -16,13 +16,15 @@
      - 클러스터는 마스터 노드 1개와 워커 노드 2개로 이루어져 있으며, 이를 통해 애플리케이션의 배포, 확장, 관리, 복구 등의 오케스트레이션을 자동화한다. 
     <br></br>
     
-    ![KakaoTalk_20240612_183056773](https://github.com/j-ra1n/MSA_Thrift_Kingdom/assets/118893707/4b6b2eb1-df55-4d5e-8c21-f071675a91bf)
+   ![스크린샷 2024-08-07 215423](https://github.com/user-attachments/assets/c15cc759-ff8a-4cf8-98cc-8d22a6471075)![스크린샷 2024-08-07 215450](https://github.com/user-attachments/assets/0236b649-d513-4d35-a4e3-d9badc590bc1)
+
+
    
     - 클러스터의 전체 파드 목록을 보여준다. 
     </details>
     <br></br>
 
-2. 데이터 가용성 확보 : 각 서비스별로 적합한 데이터베이스 사용 독립적인 PV(PersistentVolume), PVC(PersistentVolumeClaim) 생성으로 데이터 영구 저장
+3. 데이터 가용성 확보 : 각 서비스별로 적합한 데이터베이스 사용 독립적인 PV(PersistentVolume), PVC(PersistentVolumeClaim) 생성으로 데이터 영구 저장
     <details>
     <summary>더보기</summary>
 
@@ -37,7 +39,7 @@
     </details>
     <br></br>
     
-3. 자체 복구 기능 활용 : 쿠버네티스의 Self-healing 기능으로 비정상 컨테이너 자동 교체 안정적인 서비스 유지
+4. 자체 복구 기능 활용 : 쿠버네티스의 Self-healing 기능으로 비정상 컨테이너 자동 교체 안정적인 서비스 유지
 
     <details>
     <summary>더보기</summary>
@@ -52,7 +54,7 @@
     </details>
      <br></br>
     
-4. 무중단 배포 구현 : 쿠버네티스의 Rolling Update 기능 활용 새로운 버전 배포 시 서비스 중단 최소화 
+5. 무중단 배포 구현 : 쿠버네티스의 Rolling Update 기능 활용 새로운 버전 배포 시 서비스 중단 최소화 
 
     <details>
     <summary>더보기</summary>

@@ -16,14 +16,11 @@
      - 클러스터는 마스터 노드 1개와 워커 노드 2개로 이루어져 있으며, 이를 통해 애플리케이션의 배포, 확장, 관리, 복구 등의 오케스트레이션을 자동화한다. 
     <br></br>
     
-  ![스크린샷 2024-08-07 215423](https://github.com/user-attachments/assets/7cab11ef-1c2d-46c7-b7ce-e45bd18746cb)![스크린샷 2024-08-07 215450](https://github.com/user-attachments/assets/0236b649-d513-4d35-a4e3-d9badc590bc1)
+      ![스크린샷 2024-08-07 215423](https://github.com/user-attachments/assets/7cab11ef-1c2d-46c7-b7ce-e45bd18746cb)![스크린샷 2024-08-07 215450](https://github.com/user-attachments/assets/0236b649-d513-4d35-a4e3-d9badc590bc1)
 
-
-
-   
-    - 클러스터의 전체 파드 목록을 보여준다. 
-    </details>
-    <br></br>
+     - 클러스터의 전체 파드 목록을 보여준다. 
+        </details>
+        <br></br>
 
 3. 데이터 가용성 확보 : 각 서비스별로 적합한 데이터베이스 사용 독립적인 PV(PersistentVolume), PVC(PersistentVolumeClaim) 생성으로 데이터 영구 저장
     <details>
